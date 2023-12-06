@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2023/12/06 17:17:44 by jkulka           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:55:44 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void cast(t_data *data)
             wall = data->map[(int)floor(ray.y)][(int)floor(ray.x)];
         }
         double distance = sqrt(pow(data->x - ray.x, 2) + pow(data->y - ray.y, 2));
-        // printf("%lf\n", distance * cos(degreeToRadian(rayAngle - data->angle)));
-        // printf("%lf\n", ray.x);
         double wallHeight = floor(data->halfH / distance);
         printf("\t%d\n", data->height);
         ft_putline_alt(data,rayCount, 0, rayCount, data->halfH - wallHeight, get_rgba(0, 0, 255, 255));
@@ -53,23 +51,14 @@ void cast(t_data *data)
         rayAngle += data->incrementAngle;
     }
 }
-void clear_screen(t_data *data)
-{
-    // mlx_clear_window(data->mlx, data->win); // Clear the window
-    // mlx_destroy_image(data->mlx, data->img); // Destroy the previous image
-    mlx_delete_image(data->mlx, data->img);
-    data->img = mlx_new_image(data->mlx, data->width, data->height); // Create a new image buffer
-    mlx_image_to_window(data->mlx, data->img, 0, 0);
-}
+
 void	ft_hook(void *param)
 {
-	// mlx_t	*mlx;
     t_data *data;
     data = param;
     usleep(data->delay * 500);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-    // data->x += 1;
     ft_clear(data);
     cast(data);
 }
@@ -84,7 +73,6 @@ void key_hook(mlx_key_data_t keydatam, void *param)
         double playerSin = sin(degreeToRadian(data->angle)) * data->speed;
         double newX = data->x + playerCos;
         double newY = data->y + playerSin;
-        // printf("newX: %lf\n", playerCos);
         if(data->map[(int)(newY + 0.5)][(int)(newX + 0.5)] == 0){
             data->x = (int)newX;
             data->y = (int)newY;   
@@ -97,19 +85,18 @@ void key_hook(mlx_key_data_t keydatam, void *param)
         double playerSin = sin(degreeToRadian(data->angle)) * data->speed;
         double newX = data->x - playerCos;
         double newY = data->y - playerSin;
-        // printf("newX: %lf\n", playerCos);
         if(data->map[(int)(newY + 0.5)][(int)(newX + 0.5)] == 0){
             data->x = (int)newX;
             data->y = (int)newY;   
         }
         return ;
-
     }
     else if(mlx_is_key_down(data->mlx, MLX_KEY_A))
         data->angle -= data->rot;
     else if(mlx_is_key_down(data->mlx, MLX_KEY_D))
         data->angle += data->rot;
 }
+
 int	main(void)
 {
     t_data data;
