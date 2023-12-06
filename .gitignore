@@ -2,3 +2,7 @@ test/
 .a
 .o
 .so
+lib/MLX42
+lib/Libft
+.vscode
+log
