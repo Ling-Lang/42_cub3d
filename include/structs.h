@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2023/12/06 16:00:39 by jkulka           ###   ########.fr       */
+/*   Updated: 2023/12/15 13:37:13 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ typedef struct s_data
     double detail;
     double fov;
     double halfFov;
-    int x;
-    int y;
+    double x;
+    double y;
     double angle;
     double speed;
     double rot;

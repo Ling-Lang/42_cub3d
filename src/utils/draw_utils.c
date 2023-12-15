@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:22 by jkulka            #+#    #+#             */
-/*   Updated: 2023/12/06 17:01:05 by jkulka           ###   ########.fr       */
+/*   Updated: 2023/12/15 13:01:15 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void ft_putline_alt(t_data *data, int x0, int y0, int x1, int y1, int color)
     int sy = y0 < y1 ? 1 : -1;
     int err = (dx > dy ? dx : -dy) / 2;
     int e2;
-	ft_printf("x1: %d\ty1: %d\tx2: %d\ty2: %d\n", x0, y0, x1, y1);
+	// ft_printf("x1: %d\ty1: %d\tx2: %d\ty2: %d\n", x0, y0, x1, y1);
     while (x0 != x1 || y0 != y1) {
         mlx_put_pixel(data->img, x0, y0, color);
         e2 = err;
