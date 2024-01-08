@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2023/12/06 16:00:39 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/08 16:09:59 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,94 @@
 # define STRUCTS_H
 #include "cub3d.h"
 
-typedef struct s_point
+typedef struct s_img
 {
-    int x;
-    int y;
-}   t_point;
-typedef struct s_float_point
+	void	*img;
+	int		*addr;
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
+}	t_img;
+
+typedef struct s_texinfo
 {
-    double x;
-    double y;
-} t_float_point;
+	char			*north;
+	char			*south;
+	char			*west;
+	char			*east;
+	int				*floor;
+	int				*ceiling;
+	unsigned long	hex_floor;
+	unsigned long	hex_ceiling;
+	int				size;
+	int				index;
+	double			step;
+	double			pos;
+	int				x;
+	int				y;
+}	t_texinfo;
+
+typedef struct s_mapinfo
+{
+	int			fd;
+	int			line_count;
+	char		*path;
+	char		**file;
+	int			height;
+	int			width;
+	int			index_end_of_map;
+}	t_mapinfo;
+
+typedef struct s_ray
+{
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	wall_dist;
+	double	wall_x;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
+
+typedef struct s_player
+{
+	char	dir;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	int		has_moved;
+	int		move_x;
+	int		move_y;
+	int		rotate;
+}	t_player;
 
 typedef struct s_data
 {
-    mlx_image_t *img;
-    mlx_t *mlx;
-    int width;
-    int height;
-    double halfW;
-    double halfH;
-    int delay;
-    double incrementAngle;
-    double detail;
-    double fov;
-    double halfFov;
-    int x;
-    int y;
-    double angle;
-    double speed;
-    double rot;
-    int map[10][10];
-}   t_data;
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	t_mapinfo	mapinfo;
+	char		**map;
+	t_player	player;
+	t_ray		ray;
+	int			**texture_pixels;
+	int			**textures;
+	t_texinfo	texinfo;
+	t_img		minimap;
+}	t_data;
 
-#endif // STRUCTS_H
+#endif
