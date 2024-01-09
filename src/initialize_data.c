@@ -6,11 +6,39 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/09 10:36:44 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:50:43 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/cub3d.h"
+
+static void	texinfo_initialize(t_texinfo *textures)
+{
+	textures->north = NULL;
+	textures->south = NULL;
+	textures->west = NULL;
+	textures->east = NULL;
+	textures->floor = 0;
+	textures->ceiling = 0;
+	textures->hex_floor = 0x0;
+	textures->hex_ceiling = 0x0;
+	textures->size = TEX_SIZE;
+	textures->step = 0.0;
+	textures->pos = 0.0;
+	textures->x = 0;
+	textures->y = 0;
+}
+
+static void	mapinfo_initialize(t_mapinfo *mapinfo)
+{
+	mapinfo->fd = 0;
+	mapinfo->line_count = 0;
+	mapinfo->path = NULL;
+	mapinfo->file = NULL;
+	mapinfo->height = 0;
+	mapinfo->width = 0;
+	mapinfo->index_end_of_map = 0;
+}
 
 static void	player_initialize(t_player *player)
 {
@@ -33,11 +61,10 @@ void	data_initialize(t_data *data)
 	data->win = NULL;
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
-	player_initialize(&data->player);
-	// init_texinfo(&data->texinfo);
 	data->map = NULL;
-	// init_mapinfo(&data->mapinfo);
-	// init_img_clean(&data->minimap);
 	data->texture_pixels = NULL;
 	data->textures = NULL;
+	player_initialize(&data->player);
+	mapinfo_initialize(&data->mapinfo);
+	texinfo_initialize(&data->texinfo);
 }

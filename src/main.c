@@ -6,7 +6,7 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/09 10:57:29 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:18:21 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data_initialize(&data);						//Initialisiere die Datenstruktur
-	if (parse_args(&data, argv) != 0)			//Parse die Argumente
-		return (1);
+	parse_arguments(argv[1], &data);			//Parse die Argumente
 	init_mlx(&data);							//Initialisiere die MLX-Bibliothek
 	init_textures(&data);						//Lade Texturen
 	print_controls();							//Gib Informationen zu den Steuerelementen aus
