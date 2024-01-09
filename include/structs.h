@@ -6,13 +6,12 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/08 16:09:59 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/09 09:59:25 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
-#include "cub3d.h"
 
 typedef struct s_img
 {
@@ -101,7 +100,6 @@ typedef struct s_data
 	int			**texture_pixels;
 	int			**textures;
 	t_texinfo	texinfo;
-	t_img		minimap;
 }	t_data;
 
 #endif
