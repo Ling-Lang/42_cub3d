@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 12:34:35 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:52:41 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,14 @@ void	parse_arguments(char *path, t_data *data)
 	int		i;
 	int		row;
 	int		col;
-
 	i = 0;
 	col = 0;
 	row = 0;
-
 	data->mapinfo.line_count = how_many_lines(path);
 	data->mapinfo.path = path;
 	data->mapinfo.file = ft_calloc(data->mapinfo.line_count \
 			+ 1, sizeof(char *));
 	data->mapinfo.fd = open(path, O_RDONLY);
-
 	build_size_of_map(data, row, col, i);
 	close(data->mapinfo.fd);
 }

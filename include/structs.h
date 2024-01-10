@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 12:18:41 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:32:16 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ typedef struct s_data
 	int			win_height;
 	int			win_width;
 	t_mapinfo	mapinfo;
-	char		**map;
 	t_player	player;
 	t_ray		ray;
 	int			**texture_pixels;

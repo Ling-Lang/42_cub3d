@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 12:38:36 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:48:47 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	init_mlx(t_data *data);
 void	data_initialize(t_data *data);
 void	init_mlx(t_data *data);
 // void	init_img_clean(t_img *img);
+void	init_textures(t_data *data);
 void	parse_arguments(char *path, t_data *data);
 
 /* Draw Utils */

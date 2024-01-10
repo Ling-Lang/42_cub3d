@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 13:18:50 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:51:49 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	data_initialize(&data);						//Initialisiere die Datenstruktur
-	// parse_arguments(argv[1], &data);			//Parse die Argumente
+	parse_arguments(argv[1], &data);			//Parse die Argumente
 	init_mlx(&data);							//Initialisiere die MLX-Bibliothek @Jens: bin heute bis hierher gekommen. Lass uns aber das "parse_arguments" nochmal gemeinsam anschauen. Bin mir das noch nicht so ganz sicher. Bis Morgen. Gruss Robin :-)
-	// init_textures(&data);						//Lade Texturen
+	init_textures(&data);						//Lade Texturen
 	print_controls();							//Gib Informationen zu den Steuerelementen aus
 	// render_images(&data);						//Rendere die Bilder
 	// listen_for_input(&data);					//Höre auf Benutzereingaben

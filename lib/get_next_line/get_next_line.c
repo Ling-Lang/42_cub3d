@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 11:36:39 by jkulka            #+#    #+#             */
-/*   Updated: 2023/04/18 12:31:33 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 13:26:38 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_read_and_save(int fd, char *save)
 	if (!buff)
 		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr(save, '\n') && read_bytes != 0)
+	while (!ft_strchr_gnl(save, '\n') && read_bytes != 0)
 	{
 		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
@@ -58,7 +58,7 @@ char	*ft_read_and_save(int fd, char *save)
 			return (NULL);
 		}
 		buff[read_bytes] = '\0';
-		save = ft_strjoin(save, buff);
+		save = ft_strjoin_gnl(save, buff);
 	}
 	free(buff);
 	return (save);
@@ -78,7 +78,7 @@ char	*ft_save(char *save)
 		free(save);
 		return (NULL);
 	}
-	s = (char *) malloc(sizeof(char) * (ft_strlen(save) - i + 1));
+	s = (char *) malloc(sizeof(char) * (ft_strlen_gnl(save) - i + 1));
 	if (!s)
 		return (NULL);
 	i++;

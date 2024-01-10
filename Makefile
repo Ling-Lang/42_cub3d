@@ -11,6 +11,7 @@ SRC	:= 	src/main.c \
 		src/initialize_data.c \
 		src/initialize_mlx.c \
 		src/parsing_arguments.c \
+		src/initialize_textures.c \
 		src/utils/draw_utils.c \
 		lib/get_next_line/get_next_line_utils.c \
 		lib/get_next_line/get_next_line.c
