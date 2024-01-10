@@ -6,9 +6,15 @@ LIBMLX	:= ./lib/MLX42
 LIBFT	:= ./lib/Libft
 HEADERS	:= -I ./include -I $(LIBMLX)/include -I ./$(LIBFT)/src
 LIB	:= $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
+
 SRC	:= 	src/main.c \
+		src/initialize_data.c \
+		src/initialize_mlx.c \
+		src/parsing_arguments.c \
 		src/utils/draw_utils.c \
-		src/utils/math/utils.c
+		lib/get_next_line/get_next_line_utils.c \
+		lib/get_next_line/get_next_line.c
+
 
 OBJ	:= ${SRC:.c=.o}
 

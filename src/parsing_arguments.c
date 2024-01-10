@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_arguments.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 09:19:50 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:34:35 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
+//TODO Fully implement.
 static int	how_many_lines(char *path)
 {
 	int		fd;
@@ -43,7 +44,7 @@ static void	build_size_of_map(t_data *data, int row, int col, int i)
 	line = get_next_line(data->mapinfo.fd);
 	while (line != 0)
 	{
-		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char)); // check Format (unsigned int?) or (size_t) ?????
+		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char)); //TODO check Format (unsigned int?) or (size_t) ?????
 
 		while (line[i] != '\0')
 		{

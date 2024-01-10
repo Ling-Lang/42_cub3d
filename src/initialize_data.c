@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 10:46:56 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:04:38 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/cub3d.h"
+#include "../include/cub3d.h"
 
 static void	texinfo_initialize(t_texinfo *textures)
 {
@@ -58,7 +58,7 @@ static void	player_initialize(t_player *player)
 void	data_initialize(t_data *data)
 {
 	data->mlx = NULL;
-	data->win = NULL;
+	// data->win = NULL;
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
 	data->map = NULL;

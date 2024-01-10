@@ -3,25 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 16:44:36 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/09 14:35:56 by rmarquar         ###   ########.fr       */
+/*   Created: 2022/12/05 11:18:43 by jkulka            #+#    #+#             */
+/*   Updated: 2024/01/10 12:37:57 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <stdbool.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include "../Libft/src/libft.h"
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 42
 # endif
 
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-int			ft_strlen(const char *str);
-char		*ft_strchr(const char *s, int c);
-char		*ft_strdup(const char *s1);
-char		*ft_strjoin(char const *ptr, char const *buf);
-char		*get_next_line(int fd);
+
+char	*get_next_line(int fd);
+int		ft_find_newline(char *save);
+char	*ft_read_and_save(int fd, char *save);
+char	*ft_get_line(char *save);
+char	*ft_save(char *save);
+// char	*ft_strjoin(char *left_str, char *buff);
+// size_t	ft_strlen(char *str);
+// char	*ft_strchr(char *s, int c);
 
 #endif

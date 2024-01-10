@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/09 09:59:25 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 12:18:41 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_img
-{
-	void	*img;
-	int		*addr;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
-}	t_img;
+// typedef struct s_img
+// {
+// 	void	*img;
+// 	int		*addr;
+// 	int		pixel_bits;
+// 	int		size_line;
+// 	int		endian;
+// }	t_img;
 
 typedef struct s_texinfo
 {
@@ -89,8 +89,8 @@ typedef struct s_player
 
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
+	mlx_t		*mlx;
+	mlx_image_t *img;
 	int			win_height;
 	int			win_width;
 	t_mapinfo	mapinfo;
