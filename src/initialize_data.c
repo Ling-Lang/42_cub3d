@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 13:52:32 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:41:51 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	texinfo_initialize(t_texinfo *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->hex_floor = 0x0;
-	textures->hex_ceiling = 0x0;
+	textures->floor_color = 0;
+	textures->ceiling_color = 0;
 	textures->floor = 0;
 	textures->ceiling = 0;
 	textures->x = 0;

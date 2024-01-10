@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 15:25:00 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:33:32 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_texinfo
 	char			*east;
 	int				*floor;
 	int				*ceiling;
-	unsigned long	hex_floor;
-	unsigned long	hex_ceiling;
+	int				floor_color;
+	int				ceiling_color;
 	int				size;
 	int				index;
 	double			step;
