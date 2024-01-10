@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 14:28:43 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:18:46 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,7 @@
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
 
-#define NORTH 0
-#define SOUTH 1
-#define EAST 2
-#define WEST 3
+
 
 # define TEX_SIZE 64
 

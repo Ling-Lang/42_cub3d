@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 14:25:43 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 15:25:00 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_data
 	t_player	player;
 	t_ray		ray;
 	int			**texture_pixels;
-	int			**textures;
+	mlx_image_t			**textures;
 	t_texinfo	texinfo;
 }	t_data;
 
@@ -107,4 +107,11 @@ typedef enum e_etype
 	MALLOC
 } t_etype;
 
+typedef enum e_dir
+{
+	NORTH = 0,
+	SOUTH,
+	EAST,
+	WEST
+} t_dir;
 #endif
