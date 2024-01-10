@@ -6,11 +6,18 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/09 15:18:04 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:01:19 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/cub3d.h"
+
+static void	print_controls(void)
+{
+	printf("Glueckwunsch. Ihr habt es jetzt bis hierher geschafft :-)");
+
+	printf("\n");
+}
 
 int	main(int argc, char **argv)
 {

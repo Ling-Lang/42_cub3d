@@ -6,7 +6,7 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/09 11:50:43 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:46:56 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void	texinfo_initialize(t_texinfo *textures)
 {
+	textures->size = TEX_SIZE;
 	textures->north = NULL;
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->floor = 0;
-	textures->ceiling = 0;
 	textures->hex_floor = 0x0;
 	textures->hex_ceiling = 0x0;
-	textures->size = TEX_SIZE;
-	textures->step = 0.0;
-	textures->pos = 0.0;
+	textures->floor = 0;
+	textures->ceiling = 0;
 	textures->x = 0;
 	textures->y = 0;
+	textures->step = 0.0;
+	textures->pos = 0.0;
 }
 
 static void	mapinfo_initialize(t_mapinfo *mapinfo)
@@ -43,15 +43,15 @@ static void	mapinfo_initialize(t_mapinfo *mapinfo)
 static void	player_initialize(t_player *player)
 {
 	player->dir = '\0';
-	player->pos_x = 0.0;
-	player->pos_y = 0.0;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
+	player->move_x = 0;
+	player->move_y = 0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
 	player->has_moved = 0;
-	player->move_x = 0;
-	player->move_y = 0;
 	player->rotate = 0;
 }
 

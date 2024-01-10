@@ -6,7 +6,7 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/09 14:32:02 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 10:59:06 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@
 
 # define WIN_WIDTH 640
 # define WIN_HEIGHT 480
+
+#define NORTH 0
+#define SOUTH 1
+#define EAST 2
+#define WEST 3
 
 # define TEX_SIZE 64
 

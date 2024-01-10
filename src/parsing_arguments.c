@@ -6,7 +6,7 @@
 /*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/09 14:32:31 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/10 09:19:50 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ static void	build_size_of_map(t_data *data, int row, int col, int i)
 		data->mapinfo.file[row] = ft_calloc(ft_strlen(line) + 1, sizeof(char)); // check Format (unsigned int?) or (size_t) ?????
 
 		while (line[i] != '\0')
-			data->mapinfo.file[row][col++] = line[i++];
+		{
+			data->mapinfo.file[row][col] = line[i];
+			col++;
+			i++;
+		}
 		data->mapinfo.file[row++][col] = '\0';
 		col = 0;
 		i = 0;
