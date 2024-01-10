@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 13:32:16 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 14:25:43 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,11 @@ typedef struct s_data
 	int			**textures;
 	t_texinfo	texinfo;
 }	t_data;
+
+typedef enum e_etype
+{
+	MLX = 0,
+	MALLOC
+} t_etype;
 
 #endif

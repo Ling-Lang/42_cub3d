@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 13:48:47 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 14:28:43 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,8 @@ void	parse_arguments(char *path, t_data *data);
 /* Draw Utils */
 int get_rgba(int r, int g, int b, int a);
 void ft_clear(t_data *data);
+
+/* Error Utils */
+void ft_strerror(char *str);
+void ft_error(int type);
 #endif

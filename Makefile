@@ -13,6 +13,7 @@ SRC	:= 	src/main.c \
 		src/parsing_arguments.c \
 		src/initialize_textures.c \
 		src/utils/draw_utils.c \
+		src/utils/utils.c \
 		lib/get_next_line/get_next_line_utils.c \
 		lib/get_next_line/get_next_line.c
 
