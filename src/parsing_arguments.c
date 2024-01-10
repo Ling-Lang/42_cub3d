@@ -6,13 +6,13 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 13:52:41 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/10 16:35:14 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-//TODO Fully implement.
+//TODO Floor color and maps
 static int	how_many_lines(char *path)
 {
 	int		fd;
