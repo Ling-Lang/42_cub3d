@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 13:47:59 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 14:33:04 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_mapinfo
 	int			height;
 	int			width;
 	int			index_end_of_map;
+	char		**map;
 }	t_mapinfo;
 
 typedef struct s_ray

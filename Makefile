@@ -14,6 +14,7 @@ SRC	:= 	src/main.c \
 		src/init/initialize_textures.c \
 		src/init/init_utils.c \
 		src/init/init_load.c \
+		src/init/init_map.c \
 		src/utils/draw_utils.c \
 		src/utils/utils.c \
 		lib/get_next_line/get_next_line_utils.c \

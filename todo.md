@@ -9,3 +9,16 @@
 
 Notes:
 * Nur neu rendern wenn der spieler sich bewegt hat oder umgeschaut hat. (Nach keyhook).
+
+
+---
+
+MAP:
+
+* wenn eine zelle um sich ein leer hat dann muss es eine wand sein
+* es muss genau ein n s w oder e geben
+
+-1 für leerzeichen
+0 boden
+1 wand
+N S W E spieler
