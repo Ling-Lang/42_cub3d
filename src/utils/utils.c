@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:22:33 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 14:32:30 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:57:11 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_error(int type)
 void ft_strerror(char *str)
 {
     write(2, "Error: ", 7);
-    perror(str);
+    // perror(str);
     write(2, "\n", 1);
     exit(EXIT_FAILURE);
 }

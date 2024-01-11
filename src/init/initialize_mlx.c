@@ -6,11 +6,11 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:56:50 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 14:31:25 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:38:14 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 
 void	init_mlx(t_data *data)

@@ -20,6 +20,9 @@ C 200,200,200
 1S01
 1101
 
-data.floor.color = (atoi(string[0]) << 24 |  << 16 | b << 8 | a);
+
+string = ft_split(20,20,20, ,);
+
+data.floor.color = (atoi(string[0]) << 24 | atoi(string[1]) << 16 | atoi(string[2]) << 8 | 255);
 
 

@@ -6,11 +6,11 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 15:41:51 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:38:10 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 static void	texinfo_initialize(t_texinfo *textures)
 {
@@ -58,7 +58,6 @@ static void	player_initialize(t_player *player)
 void	data_initialize(t_data *data)
 {
 	data->mlx = NULL;
-	// data->win = NULL;
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
 	data->texture_pixels = NULL;

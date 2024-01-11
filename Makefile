@@ -8,10 +8,12 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include -I ./$(LIBFT)/src
 LIB	:= $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
 
 SRC	:= 	src/main.c \
-		src/initialize_data.c \
-		src/initialize_mlx.c \
 		src/parsing_arguments.c \
-		src/initialize_textures.c \
+		src/init/initialize_data.c \
+		src/init/initialize_mlx.c \
+		src/init/initialize_textures.c \
+		src/init/init_utils.c \
+		src/init/init_load.c \
 		src/utils/draw_utils.c \
 		src/utils/utils.c \
 		lib/get_next_line/get_next_line_utils.c \

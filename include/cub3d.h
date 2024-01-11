@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 15:18:46 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 10:44:05 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,10 @@ void ft_clear(t_data *data);
 /* Error Utils */
 void ft_strerror(char *str);
 void ft_error(int type);
+
+/* Init */
+int	is_line_empty(char *line);
+int	get_value_len(char *line, int i);
+char	*get_value(char *line, char *name);
+int ft_load_textures(t_data *data);
 #endif
