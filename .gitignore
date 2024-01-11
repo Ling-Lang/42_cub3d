@@ -1,8 +1,9 @@
 test/
 .a
-.o
+*.o
 .so
 lib/MLX42
 lib/Libft
 .vscode
 log
+cub3d

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 13:39:43 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:34:40 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	data_initialize(t_data *data)
 	data->win_width = WIN_WIDTH;
 	data->texture_pixels = NULL;
 	data->colors = NULL;
-	data->textures = NULL;
 	player_initialize(&data->player);
 	mapinfo_initialize(&data->mapinfo);
 	texinfo_initialize(&data->texinfo);
