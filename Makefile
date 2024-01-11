@@ -20,8 +20,7 @@ SRC	:= 	src/main.c \
 		lib/get_next_line/get_next_line_utils.c \
 		lib/get_next_line/get_next_line.c
 
-
-OBJ	:= ${SRC:.c=.o}
+OBJ	:= $(patsubst %.c,obj/%.o,$(SRC))
 
 GREEN = \033[0;32m
 YELLOW = \033[1;33m
@@ -43,7 +42,8 @@ libft:
 	fi
 		@cd $(LIBFT) && make;
 
-%.o: %.c
+obj/%.o: %.c
+	@mkdir -p $(@D)
 	@$(CC) $(DEBUG) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJ)
@@ -53,8 +53,7 @@ $(NAME): $(OBJ)
 
 clean:
 	@echo "$(YELLOW)Cleaning object files$(RESET)"
-	@rm -rf $(OBJ)
-	@rm -rf $(LIBMLX)/build
+	@rm -rf obj
 
 fclean: clean
 	@echo "$(YELLOW)Cleaning executable $(NAME)$(RESET)"
