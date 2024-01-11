@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 15:19:07 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 18:34:47 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,12 @@ static int	ft_validate_map(t_data *data, int i)
 				    if(ft_check_around(data, col, rows) == true)
                     {
                         if(ft_isplayer(data->mapinfo.file[col][rows]) == true)
-                            player = true;
+                        {
+                            if(player == true)
+                                return false;
+                            else
+                                player = true;
+                        }
                         rows++;
                         len++;
                     }
