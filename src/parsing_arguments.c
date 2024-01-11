@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/10 16:35:14 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:23:31 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static int	how_many_lines(char *path)
 static void	build_size_of_map(t_data *data, int row, int col, int i)
 {
 	char	*line;
-
 	line = get_next_line(data->mapinfo.fd);
 	while (line != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:45:53 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 15:22:49 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:32:58 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ int	ft_check_dir(int i, t_data *data)
 	int	count;
 
 	count = 0;
-	while (data->mapinfo.file[i++] != NULL)
+		// for(int j = 0; data->mapinfo.file[j]; j++)
+		// ft_printf("%s", data->mapinfo.file[j]);
+	while (data->mapinfo.file[i] != NULL)
 	{
 		if(count == 6)
 			break;
@@ -39,6 +41,7 @@ int	ft_check_dir(int i, t_data *data)
 			data->texinfo.floor = ft_check_dir_2(i, data, "F", &count);
 		else if (ft_strcmp_cub3d(data->mapinfo.file[i], "C") == 0)
 			data->texinfo.ceiling = ft_check_dir_2(i, data, "C", &count);
+		i++;
 	}
 	ft_parse_map(data, i);
 	return (count);
@@ -51,7 +54,7 @@ void	init_textures(t_data *data)
 
 	i = 0;
 	count = 0;
-	count = ft_check_dir(i - 1, data);
+	count = ft_check_dir(i, data);
 	ft_load_textures(data);
 	ft_load_colors(data);
 }

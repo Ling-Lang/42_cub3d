@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:42:04 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 15:23:43 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:26:27 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int ft_load_textures(t_data *data)
 {
-    
-    data->textures = ft_calloc(5, sizeof * data->textures);
+    // ft_printf("\t%s\n", data->texinfo.north);
+    // ft_printf("\t%s\n", data->texinfo.south);
+    // ft_printf("\t%s\n", data->texinfo.west);
+    // ft_printf("\t%s\n", data->texinfo.east);
 	data->textures[NORTH] = mlx_texture_to_image(data->mlx,
 			mlx_load_png(data->texinfo.north));
 	data->textures[SOUTH] = mlx_texture_to_image(data->mlx,
@@ -29,10 +31,8 @@ int ft_load_textures(t_data *data)
 
 int ft_load_colors(t_data *data)
 {
-	write(1, "1", 1);
-    data->colors = ft_calloc(2, sizeof * data->colors);
+    data->colors = ft_calloc(2, sizeof(int));
 	data->colors[FLOOR] = ft_get_color(data->texinfo.floor);
-	write(1, "1", 1);
 	data->colors[CEILING] = ft_get_color(data->texinfo.ceiling);
     return 1;
 }
