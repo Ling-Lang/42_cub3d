@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 16:28:08 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:53:07 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void hook(void *v_data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	ft_clear(data);
-	//TODO Render function implementieren. 
+	//TODO Render function implementieren.
 }
 
 int	main(int argc, char **argv)

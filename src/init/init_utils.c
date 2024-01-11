@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:38:51 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 16:32:52 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 16:56:41 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,14 @@ char	*get_value(char *line, char *name)
 	return (res);
 }
 
+//TODO Fehler mit nachfolgenden tabs oder spaces fixen (trim?)
 int ft_get_color(char *raw_value)
 {
 	char **tmp_split;
+
 	tmp_split = ft_split(raw_value, ',');
 	int res;
-	// ft_printf("r: %s g:%s b:%s\n", tmp_split[0], tmp_split[1], tmp_split[2]);
+	ft_printf("r: %s g:%s b:%s\n", tmp_split[0], tmp_split[1], tmp_split[2]);
 	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]), ft_atoi(tmp_split[2]), 255);
 	free(tmp_split);
 	return res;
