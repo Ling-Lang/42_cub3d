@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:38:51 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 10:47:40 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 14:03:25 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,13 @@ char	*get_value(char *line, char *name)
 	return (res);
 }
 
+int ft_get_color(char *raw_value)
+{
+	char **tmp_split;
+	tmp_split = ft_split(raw_value, ',');
+	int res;
+
+	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]), ft_atoi(tmp_split[2]), 255);
+	free(tmp_split);
+	return res;
+}

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 15:23:19 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 14:01:41 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void hook(void *v_data)
 		mlx_close_window(data->mlx);
 	ft_clear(data);
 	//TODO Render function implementieren. 
-	mlx_put_pixel(data->img, 10, 10, get_rgba(255, 0, 0, 255));
 }
 
 int	main(int argc, char **argv)

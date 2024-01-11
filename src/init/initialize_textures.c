@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:45:53 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 11:56:48 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:44:37 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ int	ft_check_dir(int i, t_data *data)
 			data->texinfo.west = ft_check_dir_2(i, data, "WE", &count);
 		else if (ft_strcmp_cub3d(data->mapinfo.file[i], "EA") == 0)
 			data->texinfo.east = ft_check_dir_2(i, data, "EA", &count);
-		
+		else if (ft_strcmp_cub3d(data->mapinfo.file[i], "F") == 0)
+			data->texinfo.floor = ft_check_dir_2(i, data, "F", &count);
+		else if (ft_strcmp_cub3d(data->mapinfo.file[i], "C") == 0)
+			data->texinfo.ceiling = ft_check_dir_2(i, data, "C", &count);
+		if (count == 4)
+			i++;
 	}
 	return (count);
 }
-
-
 
 void	init_textures(t_data *data)
 {
@@ -49,7 +52,9 @@ void	init_textures(t_data *data)
 	i = 0;
 	count = 0;
 	count = ft_check_dir(i - 1, data);
-	if (count != 4)
-		ft_strerror("MAP");
+	// if (count != 6)
+	// 	ft_strerror("MAP");
+	// ft_printf("\t%s\n", data->texinfo.ceiling);
 	ft_load_textures(data);
+	ft_load_colors(data);
 }

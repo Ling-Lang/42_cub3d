@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/10 15:33:32 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:47:59 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ typedef struct s_texinfo
 	char			*south;
 	char			*west;
 	char			*east;
-	int				*floor;
-	int				*ceiling;
-	int				floor_color;
-	int				ceiling_color;
+	char			*floor;
+	char			*ceiling;
 	int				size;
 	int				index;
 	double			step;
@@ -97,7 +95,8 @@ typedef struct s_data
 	t_player	player;
 	t_ray		ray;
 	int			**texture_pixels;
-	mlx_image_t			**textures;
+	mlx_image_t	**textures;
+	int			*colors;
 	t_texinfo	texinfo;
 }	t_data;
 
@@ -114,4 +113,11 @@ typedef enum e_dir
 	EAST,
 	WEST
 } t_dir;
+
+typedef enum e_color
+{
+	FLOOR = 0,
+	CEILING
+} t_color;
+
 #endif

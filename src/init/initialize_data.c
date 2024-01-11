@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 10:38:10 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/11 13:39:43 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static void	texinfo_initialize(t_texinfo *textures)
 	textures->south = NULL;
 	textures->west = NULL;
 	textures->east = NULL;
-	textures->floor_color = 0;
-	textures->ceiling_color = 0;
 	textures->floor = 0;
 	textures->ceiling = 0;
 	textures->x = 0;
@@ -61,6 +59,7 @@ void	data_initialize(t_data *data)
 	data->win_height = WIN_HEIGHT;
 	data->win_width = WIN_WIDTH;
 	data->texture_pixels = NULL;
+	data->colors = NULL;
 	data->textures = NULL;
 	player_initialize(&data->player);
 	mapinfo_initialize(&data->mapinfo);
