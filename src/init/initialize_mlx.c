@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 10:56:50 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 10:38:14 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/12 16:02:15 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 
 void	init_mlx(t_data *data)
 {
-	data->mlx = mlx_init(WIN_WIDTH, WIN_HEIGHT, "Test", false);
+	data->mlx = mlx_init(1920, 1080, "Test", false);
 	if(!data->mlx)
 		ft_error(MLX);
-	data->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!data->img || (mlx_image_to_window(data->mlx, data->img, 0, 0) < 0))
-		ft_error(MLX);
+    data->img = mlx_new_image(data->mlx, 1920, 1080);
 	return ;
 }

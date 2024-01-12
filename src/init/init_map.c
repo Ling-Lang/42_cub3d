@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 12:04:03 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/12 16:02:05 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ static int	ft_validate_map(t_data *data, int i)
                             else
                             {
                                 player = true;
+                                data->player.pos_x = rows;
+                                data->player.pos_y = len;
                                 data->player.dir = data->mapinfo.file[col][rows];
                             }
                         }
@@ -128,9 +130,7 @@ bool ft_fill_map(t_data *data, int i)
             if(data->mapinfo.file[col][rows] == ' ')
                 data->mapinfo.map[k][j] = '-';
             else
-            {
                 data->mapinfo.map[k][j] = data->mapinfo.file[col][rows];
-            }
             j++;
             rows++;  
 		}
@@ -139,6 +139,7 @@ bool ft_fill_map(t_data *data, int i)
         col++;
 		rows = 0;
 	}
+    ft_printf("%d", k);
     data->mapinfo.map[k] = NULL;
     return true;
 }
@@ -155,16 +156,7 @@ void	ft_parse_map(t_data *data, int i)
         ft_fill_map(data, i);
         int j =0;
         int k = 0;
-        while(data->mapinfo.map[j])
-        {
-            while(data->mapinfo.map[j][k] != '\0')
-            {
-                ft_printf("%c", data->mapinfo.map[j][k]);
-                k++;
-            }
-            k = 0;
-            j++;
-        }
-        ft_printf("\n");
+        // k--;
+        // ft_printf("\t%d,%d\n", j, k);
     }
 }

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:22 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 14:01:31 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/12 16:03:45 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void ft_clear(t_data *data)
 {
 	int i = 0;
 	int j = 0;
-	while(i < WIN_HEIGHT)
+	while(i < 1080)
 	{
-		while(j < WIN_WIDTH)
+		while(j < 1920)
 		{
 			mlx_put_pixel(data->img, j, i, get_rgba(255, 255, 255, 255));
 			j++;
