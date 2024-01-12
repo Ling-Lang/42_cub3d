@@ -1,9 +1,15 @@
+
+## TODO
+
+### Hauptziele
 * [x] Map parsing
 * [ ] Basic rendering nur Farben
 * [ ] Movement
 * [ ] Textures
 
+### Bugs
 
+* [ ] Map parsing Segfault fixen bei tabs/leerzeichen nachpfad
 
 ---
 

@@ -6,13 +6,13 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 16:53:07 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/12 14:56:58 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	print_controls(void)
+static void	print_controls()
 {
 	printf("Glueckwunsch. Ihr habt es jetzt bis hierher geschafft :-)");
 	printf("\n");
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	parse_arguments(argv[1], &data);			//Parse die Argumente
 	init_mlx(&data);							//Initialisiere die MLX-Bibliothek @Jens: bin heute bis hierher gekommen. Lass uns aber das "parse_arguments" nochmal gemeinsam anschauen. Bin mir das noch nicht so ganz sicher. Bis Morgen. Gruss Robin :-)
 	init_textures(&data);						//Lade Texturen
+	ft_printf("%c", data.player.dir);
 	print_controls();							//Gib Informationen zu den Steuerelementen aus
 	// render_images(&data);						//Rendere die Bilder
 	// listen_for_input(&data);					//Höre auf Benutzereingaben
