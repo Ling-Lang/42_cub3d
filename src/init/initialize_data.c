@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 16:34:40 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/12 11:50:24 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	mapinfo_initialize(t_mapinfo *mapinfo)
 	mapinfo->height = 0;
 	mapinfo->width = 0;
 	mapinfo->index_end_of_map = 0;
+	mapinfo->map = NULL;
 }
 
 static void	player_initialize(t_player *player)
