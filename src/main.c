@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 16:16:30 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/13 17:59:22 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,21 @@ static void	print_controls()
 	printf("Glueckwunsch. Ihr habt es jetzt bis hierher geschafft :-)");
 	printf("\n");
 }
+void drawCircle(t_data *data, int centerX, int centerY, int radius, int color)
+{
+int x, y;
+    for(y = -radius; y <= radius; y++)
+    {
+        for(x = -radius; x <= radius; x++)
+        {
+            if(x*x + y*y <= radius*radius)
+            {
+                mlx_put_pixel(data->img, centerX + x, centerY + y, color);
+            }
+        }
+    }
+}
+
 void drawMap(t_data *data)
 {
     int i, j, x, y;
@@ -26,9 +41,7 @@ void drawMap(t_data *data)
         {
             // Choose a color based on the cell's value
             int color = (data->mapinfo.map[i][j] == '0') ? data->colors[FLOOR] : data->colors[CEILING];
-			if(data->mapinfo.map[i][j] == 'S')
-				color = get_rgba(12, 12, 12, 255);
-			else if(data->mapinfo.map[i][j] == '-')
+			if(data->mapinfo.map[i][j] == '-')
 				color = get_rgba(255, 255, 255, 255);
 			else if(data->mapinfo.map[i][j] == '\n')
 				color = get_rgba(255, 255, 255, 255);
@@ -37,10 +50,12 @@ void drawMap(t_data *data)
                 for(x = 0; x < 64; x++)
                 {
 					mlx_put_pixel(data->img, j * 64 + x, i * 64 + y, color);
-                }
+				}
             }
         }
     }
+	// data->player.pos_x = 2;
+	// printf("\t%f;%f\n", data->player.pos_x, data->player.pos_y);
 }
 
 void hook(void *v_data)
@@ -50,7 +65,8 @@ void hook(void *v_data)
 		mlx_close_window(data->mlx);
 	ft_clear(data);
 	drawMap(data);
-	mlx_put_pixel(data->img, 100, 100, data->colors[FLOOR]);
+	// mlx_put_pixel(data->img, 100, 100, data->colors]);
+	drawCircle(data, data->player.pos_x * 64 + 32, data->player.pos_y * 64 + 32, 32, get_rgba(255, 2, 2, 255));
 	mlx_image_to_window(data->mlx, data->img, 0, 0);
 	//TODO Render function implementieren.
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 16:02:05 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/13 17:47:25 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,9 @@ static int	ft_validate_map(t_data *data, int i)
                             else
                             {
                                 player = true;
-                                data->player.pos_x = rows;
                                 data->player.pos_y = len;
+                                data->player.pos_x = rows;
+                                // data->mapinfo.map[]
                                 data->player.dir = data->mapinfo.file[col][rows];
                             }
                         }
@@ -129,8 +130,10 @@ bool ft_fill_map(t_data *data, int i)
 		{
             if(data->mapinfo.file[col][rows] == ' ')
                 data->mapinfo.map[k][j] = '-';
-            else
+            else if(!ft_isplayer(data->mapinfo.file[col][rows]))
                 data->mapinfo.map[k][j] = data->mapinfo.file[col][rows];
+            else if(ft_isplayer(data->mapinfo.file[col][rows]))
+                data->mapinfo.map[k][j] = '0';
             j++;
             rows++;  
 		}
