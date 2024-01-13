@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 16:17:35 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/13 22:01:52 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	int		has_moved;
+	bool	has_moved;
 	int		move_x;
 	int		move_y;
 	int		rotate;
@@ -99,6 +99,8 @@ typedef struct s_data
 	mlx_image_t	*textures[4];
 	int			*colors;
 	t_texinfo	texinfo;
+	int32_t m_x;
+	int32_t m_y;
 }	t_data;
 
 typedef enum e_etype

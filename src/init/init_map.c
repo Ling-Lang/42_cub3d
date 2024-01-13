@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/13 17:47:25 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/13 20:29:58 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ static int	ft_validate_map(t_data *data, int i)
                             else
                             {
                                 player = true;
-                                data->player.pos_y = len;
-                                data->player.pos_x = rows;
+                                data->player.pos_y = len * 64;
+                                data->player.pos_x = rows * 64;
                                 // data->mapinfo.map[]
                                 data->player.dir = data->mapinfo.file[col][rows];
                             }
