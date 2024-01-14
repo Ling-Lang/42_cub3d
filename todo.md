@@ -33,17 +33,26 @@ N S W E spieler
 -------------------------------------------------------------------------------------------------------------------------------
 
 von Robin 13.01.2024 / 23:16 Uhr
-Wir müssen unsere Daten in unserm "Ray-Struct" setzen, am Anfang(ausrechnen). Auf dieser Basis werden dann alle weiteren Kalkulationen durchgeführt:
+
+Wir müssen unsere Daten in unserm "Ray-Struct" setzen, am Anfang(ausrechnen). Auf dieser Basis werden dann alle weiteren Kalkulationen durchgeführt: nach jedem move des Players, wird "render_raycast" dann frisch ausgeführt, dass kommt aber erst im nächsten Schritt dann. Zuerst mal implementieren :-)
 
 void	render_raycast(t_data *data)
 
-	a.) init_texture_pixels(data);      --> Zweck: Speicher für ein Array von Pixeln für eine Textur initialisieren
-	b.) init_ray(&data->ray);           --> Zweck: Alle Daten im Struct Ray auf 0 setzen; 
-	c.) raycasting(&data->player, data);--> Zweck: Wir füllen unseren Struct mit unseren notwendigen Daten
+	a.) init_texture_pixels(data);      --> Zweck: Speicher für ein Array von Pixeln für eine Textur initialisieren + wir befüllen unser 2D Array (data-textures) mit einer Farbe. Wenn wir nur 1 Farbe Anfangs verwenden ist es etwas einfacher. Ansonsten gerne schon mit einem texture. So wie du magst Jens.
+
+	b.) init_ray(&data->ray);           --> Zweck: Alle Daten im Struct Ray auf 0 setzen; --> Diese Funktion haben wir schon. Können wir einfach wieder verwenden :-)
+
+	c.) raycasting(&data->player, data);--> Zweck: Wir füllen unseren Struct mit unseren notwendigen Daten (Rechnen!)
+
 	d.) render_frame(data);             --> weiß ich noch nicht :-) Müssen wir zusammen machen :-)
 
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
+	Für das ausrechnen verwenden wir dann am besten den Guide von Neosizzle auf GitHub. Da sind alle Formeln drauf die wir brauchen. Das sollte ausreichen.
 
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
 
 
     BEISPIELE:
@@ -57,9 +66,9 @@ void	render_raycast(t_data *data)
 	x = 0;
 	ray = data->ray;                                --> Einen Struct für unseren Strahlen erzeugen
 	
-    while (x < data->win_width)                     --> wir iterrieren nun über jede X-Linie bis wir unsere Bildschirmbreite erreicht haben. In unserem Fall (Win-width(320)!). Es wird also bis 319 durchiterriert.
+    while (x < data->win_width)                     --> wir iterrieren nun über jede X-Linie bis wir unsere Bildschirmbreite erreicht haben. In unserem Fall (Win-width(320)!). Es wird also von 0 bis 319 durchiterriert.
 	{
-        init_raycasting_info(x, &ray, player);      --> wir setzen für jede X-Linie einen Wert und machen dies in unserer Extra Funktion init_raycasting_info(Berechnungen)
+        init_raycasting_info(x, &ray, player);      --> wir setzen für jede X-Linie einen Wert und machen dies in unserer Extra Funktion init_raycasting_info(x, &ray, player)		 --> (Berechnungen)
 		set_dda(&ray, player);                      --> siehe ganz unten
 		perform_dda(data, &ray);                    --> siehe ganz unten
 		calculate_line_height(&ray, data, player);  --> siehe ganz unten
