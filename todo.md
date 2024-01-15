@@ -193,3 +193,95 @@ mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0);: Das gerenderte 
 mlx_destroy_image(data->mlx, image.img);: Nachdem das Bild auf das Fenster gezeichnet wurde, wird der zugehörige Speicher freigegeben, um Speicherlecks zu vermeiden. mlx_destroy_image wird verwendet, um das Bildobjekt zu zerstören.
 
 Zusammengefasst erstellt und rendert die Funktion render_frame einen Frame, indem sie jeden Pixel des Bildes festlegt und dann das Bild auf das Fenster zeichnet. Dies ist ein typischer Ablauf in der Computergrafikprogrammierung, insbesondere wenn man mit der MinilibX-Bibliothek arbeitet
+
+
+
+
+--------------------------------------------------
+--------------------------------------------------
+Eintrag Robin am 15.01.2024 / 23:20 Uhr:				Zustäzlicher Hinweis zur Performance --> siehe Line 193-195
+--------------------------------------------------
+-------------------------------------------------- 
+
+Thema: Boden und Decke verlegen :-)
+------------------------------------
+
+zum einlesen:
+
+Im Gegensatz zu den Wandtexturen sind die Boden- und Deckentexturen horizontal und können daher nicht auf die gleiche Weise gezeichnet werden wie die Wand mit vertikalen Streifen. Stattdessen werden sie mit horizontalen Scanlinien gezeichnet. Die Perspektive ähnelt der von Wänden, ist jedoch um 90 Grad gedreht. Im Gegensatz zu den Wänden, bei denen genau eine Textur pro vertikalen Streifen verwendet wurde, können jedoch mehrere Bodentexturen (oder dieselbe wiederholt) unsere horizontale Linie kreuzen.
+
+Das Zeichnen der Decke erfolgt auf die gleiche Weise wie das Zeichnen des Bodens, daher wird hier nur der Boden erklärt.
+
+Der Bodenguss erfolgt "vor"!!! den Wänden, also zeichnen wir zunächst den "gesamten Boden" (und die Decke) und überschreiben dann im nächsten Schritt wie zuvor einen Teil der Pixel mit den Wänden.
+
+Kurz gesagt funktioniert der Bodenguss wie folgt: Scanline für Scanline vorgehen. Berechnen Sie für die aktuelle Scanlinie die Position auf dem Boden, die dem linken Pixel der Scanlinie entspricht, und die Position, die dem rechten Pixel entspricht. Dies kann dadurch berechnet werden, dass der Strahl, der von der Kamera ausgeht und durch dieses Pixel der Kameraebene geht, auf den Boden trifft. Die Formeln und Erläuterungen hierzu finden wir weiter unten im Code zum Verlegen von Böden.
+
+Wir können dann zwischen diesem Punkt ganz links und ganz rechts linear interpolieren, um die Bodenkoordinaten zu erhalten, die mit den anderen Pixeln dieser Scanlinie übereinstimmen. Das funktioniert, weil die Bodenstruktur perfekt horizontal ist.
+
+Jetzt kommt der neue Bodengusscode, der Zeile für Zeile statt vertikaler Streifen für vertikaler Streifen vorgeht.
+Die Formel für rowDistance, den horizontalen Abstand von der Kamera zum Boden für die aktuelle Reihe, der posZ / p ist, wobei p der aktuelle Pixelabstand von der Bildschirmmitte ist, kann wie folgt erklärt werden:
+
+Der Kamerastrahl geht durch die folgenden zwei Punkte: die Kamera selbst, die sich auf einer bestimmten Höhe (posZ) befindet, und einen Punkt vor der Kamera (durch eine gedachte vertikale Ebene, die die Bildschirmpixel enthält) mit horizontalem Abstand 1 von der Kamera und die vertikale Position p niedriger als posZ (posZ - p). Beim Durchlaufen dieses Punktes ist die Linie vertikal um p Einheiten und horizontal um 1 Einheit zurückgelegt worden. Um den Boden zu erreichen, muss es stattdessen PosZ-Einheiten zurücklegen. Es bewegt sich horizontal im gleichen Verhältnis. Das Verhältnis betrug 1/p für den Durchgang durch die Kameraebene. Wenn wir also posZ-mal weiter gehen, um den Boden zu erreichen, beträgt die gesamte horizontale Distanz posZ/p.
+
+HINWEIS: Das hier durchgeführte Stepping ist eine affine Texturzuordnung, was bedeutet, dass wir linear zwischen zwei Punkten interpolieren können, anstatt für jedes Pixel eine andere Unterteilung berechnen zu müssen. Dies ist im Allgemeinen nicht perspektivisch korrekt, aber für perfekt horizontale Böden/Decken (und auch perfekt vertikale Wände) ist es so, sodass wir es für Raycasting verwenden können.
+
+
+
+//BODENGUSS
+
+     for(int y = 0; y < h; y++)
+    {
+      // rayDir für den Strahl ganz links (x = 0) und den Strahl ganz rechts (x = w)
+    	float rayDirX0 = dirX - planeX;
+      float rayDirY0 = dirY - planeY;
+      float rayDirX1 = dirX + planeX;
+      float rayDirY1 = dirY + planeY;
+
+      // Aktuelle y-Position im Vergleich zur Mitte des Bildschirms (dem Horizont)
+       int p = y - screenHeight / 2;
+
+      // Vertikale Position der Kamera.
+      float posZ = 0,5 * screenHeight;
+
+      // Horizontaler Abstand von der Kamera zum Boden für die aktuelle Reihe.
+      // 0,5 ist die Z-Position genau in der Mitte zwischen Boden und Decke.
+      float rowDistance = posZ / p;
+
+      // Berechnen Sie den realen Schrittvektor, den wir für jedes x hinzufügen müssen (parallel zur Kameraebene)
+       // Schrittweises Addieren vermeidet Multiplikationen mit einem Gewicht in der inneren Schleife
+       float floorStepX = rowDistance * (rayDirX1 - rayDirX0) / screenWidth;
+      float floorStepY = rowDistance * (rayDirY1 - rayDirY0) / screenWidth;
+
+      // reale Koordinaten der Spalte ganz links. Dies wird aktualisiert, wenn wir nach rechts gehen.
+      float floorX = posX + rowDistance * rayDirX0;
+      float floorY = posY + rowDistance * rayDirY0;
+
+      for(int x = 0; x < screenWidth; ++x)
+      {
+        // die Zellkoordinate wird einfach aus den ganzzahligen Teilen von floorX und floorY ermittelt
+         int cellX = (int)(floorX);
+        int cellY = (int)(floorY);
+
+        // Texturkoordinate aus dem Bruchteil erhalten
+         int tx = (int)(texWidth * (floorX - cellX)) & (texWidth - 1);
+        int ty = (int)(texHeight * (floorY - cellY)) & (texHeight - 1);
+
+        floorX += floorStepX;
+        floorY += floorStepY;
+
+        // Textur auswählen und Pixel zeichnen
+         int floorTexture = 3;
+        int Deckentextur = 6;
+        Uint32-Farbe;
+
+        //
+         Bodenfarbe = Textur[floorTexture][texWidth * ty + tx];
+        Farbe = (Farbe >> 1) & 8355711; // etwas dunkler machen
+         buffer[y][x] = color;
+
+        //Decke (symmetrisch, bei screenHeight - y - 1 statt y)
+         color = texture[ceilingTexture][texWidth * ty + tx];
+        Farbe = (Farbe >> 1) & 8355711; // etwas dunkler machen
+         buffer[screenHeight - y - 1][x] = color;
+      }
+    }
