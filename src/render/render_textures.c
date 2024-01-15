@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:41 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 15:12:55 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 15:17:19 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void calc_height(t_ray *ray, t_data *data)
     else
         ray->wall_x = (data->player.pos_x) + ray->wall_dist * ray->dir_x;
     ray->wall_x -= floor(ray->wall_x); 
-    printf("\twall_dist: %f\n\tline_height: %d\n\tdraw_start: %d\n\tdraw_end: %d\n\twall_x: %f\n\n",
-    ray->wall_dist, ray->line_height, ray->draw_start, ray->draw_end, ray->wall_x);
+    // printf("\twall_dist: %f\n\tline_height: %d\n\tdraw_start: %d\n\tdraw_end: %d\n\twall_x: %f\n\n",
+    // ray->wall_dist, ray->line_height, ray->draw_start, ray->draw_end, ray->wall_x);
 }
 
 

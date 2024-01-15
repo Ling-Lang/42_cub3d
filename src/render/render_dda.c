@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:30 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 15:12:50 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 16:04:13 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void do_dda(t_ray *ray, t_data *data)
         }
         if(data->mapinfo.map[ray->map_y][ray->map_x] == '1')
         {
-            ft_printf("WAND!\n");
+            // ft_printf("WAND!\n");
             hit = 1;
         }
     }

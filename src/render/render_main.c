@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:17:09 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 12:56:31 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 15:56:54 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int ft_render(t_data *data, bool direct)
     }
     if(data->player.has_moved == true)
     {
-        
-        // malloc_textures
+        ft_clear(data);
+        raycast(data);
     }
 }
