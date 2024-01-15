@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 20:10:45 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 20:16:40 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void hook(void *v_data)
 	}
 	if(data->player.has_moved == true)
 		ft_render(data, 0);
+}
 
 void k_hook(mlx_key_data_t key, void *v_data)
 {
@@ -79,6 +80,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 		data->player.plane_x = data->player.plane_x * cos(rotspeed) - data->player.plane_y * sin(rotspeed);
 		data->player.plane_y = tmp_x * sin(rotspeed) + data->player.plane_y * cos(rotspeed);
 		data->player.has_moved = true;
+	}
 }
  
 int	main(int argc, char **argv)
