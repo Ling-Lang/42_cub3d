@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/15 12:32:35 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 15:04:18 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void ray_init(t_ray *ray)
 {
+	ray->camera_x = 0;
+	ray->dir_x = 0;
+	ray->dir_y = 0;
+	ray->map_x = 0;
+	ray->map_y = 0;
 	ray->step_x = 0;
 	ray->step_y = 0;
 	ray->sidedist_x = 0;
@@ -21,7 +26,10 @@ void ray_init(t_ray *ray)
 	ray->deltadist_x = 0;
 	ray->deltadist_y = 0;
 	ray->wall_dist = 0;
-	ray->wall_x = 0;	
+	ray->wall_x = 0;
+	ray->line_height = 0;	
+	ray->draw_start = 0;
+	ray->draw_end = 0;
 }
 static void	texinfo_initialize(t_texinfo *textures)
 {

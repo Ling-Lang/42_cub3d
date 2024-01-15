@@ -103,7 +103,7 @@ void	init_raycasting_info(int x, t_ray *ray, t_player *player)
 
 
 
-Tagesziel für Montag erreicht. Yaay :-)
+Tagesziel für Montag erreicht. Yaay :-) [x]
 
 
 -------------------------------------------------------------------------------------------------------------------------------

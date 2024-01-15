@@ -15,6 +15,7 @@ SRC	:= 	src/main.c \
 		src/init/init_utils.c \
 		src/init/init_load.c \
 		src/init/init_map.c \
+		src/init/init_player.c \
 		src/utils/draw_utils.c \
 		src/utils/utils.c \
 		src/render/render_main.c \

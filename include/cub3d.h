@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 12:51:06 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 14:52:41 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,13 @@ int ft_load_textures(t_data *data);
 int ft_load_colors(t_data *data);
 int ft_get_color(char *raw_value);
 void ft_parse_map(t_data *data, int i);
+void	init_player(t_data *data);
 
 /* Render Zeugs */
 int ft_render(t_data *data, bool direct);
 void raycast(t_data *data);
+void set_dda(t_ray *ray, t_data *data);
+void do_dda(t_ray *ray, t_data *data);
+void calc_height(t_ray *ray, t_data *data);
 
 #endif
