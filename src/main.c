@@ -28,7 +28,6 @@ void hook(void *v_data)
 	}
 	if(data->player.has_moved == true)
 		ft_render(data, 0);
-}
 
 void k_hook(mlx_key_data_t key, void *v_data)
 {
@@ -80,8 +79,8 @@ void k_hook(mlx_key_data_t key, void *v_data)
 		data->player.plane_x = data->player.plane_x * cos(rotspeed) - data->player.plane_y * sin(rotspeed);
 		data->player.plane_y = tmp_x * sin(rotspeed) + data->player.plane_y * cos(rotspeed);
 		data->player.has_moved = true;
-	}
 }
+ 
 int	main(int argc, char **argv)
 {
 	t_data	data;

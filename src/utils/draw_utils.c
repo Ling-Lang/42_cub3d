@@ -18,7 +18,6 @@ int get_rgba(int r, int g, int b, int a)
 	// ft_printf("\tr:%d g:%d b:%d a:%d\n", r, g, b, a);
     return (r << 24 | g << 16 | b << 8 | a);
 }
-
 void ft_clear(t_data *data)
 {
 	int i = 0;
