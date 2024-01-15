@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycasting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 16:25:11 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 19:53:34 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,59 +26,15 @@ static void init_raycast(int x, t_ray *ray, t_data *data)
     // ray->camera_x, ray->dir_x, ray->dir_x, ray->map_x, ray->map_y, ray->deltadist_x, ray->deltadist_y);
 }
 
-void drawThickLine(t_data *data, int x1, int y1, int x2, int y2, int thickness, int color, bool dashed)
+void drawThickLine(t_data *data, int x, int y1, int y2, int color)
 {
-    int dx = abs(x2 - x1);
-    int dy = abs(y2 - y1);
-    int sx = (x1 < x2) ? 1 : -1;
-    int sy = (y1 < y2) ? 1 : -1;
-    int err = dx - dy;
-    int dash_length = 10;
-    int space_length = 10;
-    int counter = 0;
-    bool draw = true;
-
-    while (1)
+    if((x > 0 && x < WIN_WIDTH) && (y1 > 0 && y1 < WIN_HEIGHT) && (y2 > 0 && y2 < WIN_HEIGHT))
     {
-        if (dashed)
+        while(y1 < y2)
         {
-            if (counter % (dash_length + space_length) < dash_length)
-                draw = true;
-            else
-                draw = false;
+            mlx_put_pixel(data->img, x, y1, color);
+            y1++;
         }
-
-        if (draw)
-        {
-            for (int i = -thickness; i <= thickness; i++)
-            {
-                for (int j = -thickness; j <= thickness; j++)
-                {
-                    if (i * i + j * j <= thickness * thickness)
-                    {
-                        if((x1 + i > 0 && x1 + i < WIN_WIDTH) && (y1 + j > 0 && y1 + j < WIN_HEIGHT))
-                            mlx_put_pixel(data->img, x1 + i, y1 + j, color);
-                    }
-                }
-            }
-        }
-
-        if (x1 == x2 && y1 == y2)
-            break;
-
-        int e2 = 2 * err;
-        if (e2 > -dy)
-        {
-            err -= dy;
-            x1 += sx;
-        }
-        if (e2 < dx)
-        {
-            err += dx;
-            y1 += sy;
-        }
-
-        counter++;
     }
 }
 
@@ -102,9 +58,9 @@ void raycast(t_data *data)
                 color = get_rgba(255, 0, 0, 255);
             else
                 color = get_rgba(0, 0, 255, 255);
-            drawThickLine(data, x + 1, ray.draw_start, x + 1, ray.draw_end, 1, color, false);
+            drawThickLine(data, x + 1, ray.draw_start, ray.draw_end, color);
         }
-        mlx_image_to_window(data->mlx, data->img, 0, 0);
+        // mlx_image_to_window(data->mlx, data->img, 0, 0);
     }
     return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:30 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 16:04:13 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 19:54:14 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void set_dda(t_ray *ray, t_data *data)
     if(ray->dir_y < 0)
     {
         ray->step_y = -1;
-        ray->sidedist_y = ((data->player.pos_x / 64) - ray->map_x) * ray->deltadist_y;
+        ray->sidedist_y = ((data->player.pos_y / 64) - ray->map_y) * ray->deltadist_y;
     }
     else
     {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:41 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 15:17:19 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 19:53:50 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void calc_height(t_ray *ray, t_data *data)
     if(ray->draw_end >= WIN_HEIGHT)
         ray->draw_end = WIN_HEIGHT - 1;
     if(ray->side == 0)
-        ray->wall_x = (data->player.pos_y) + ray->wall_dist * ray->dir_y;
+        ray->wall_x = (data->player.pos_y / 64) + ray->wall_dist * ray->dir_y;
     else
-        ray->wall_x = (data->player.pos_x) + ray->wall_dist * ray->dir_x;
+        ray->wall_x = (data->player.pos_x / 64) + ray->wall_dist * ray->dir_x;
     ray->wall_x -= floor(ray->wall_x); 
     // printf("\twall_dist: %f\n\tline_height: %d\n\tdraw_start: %d\n\tdraw_end: %d\n\twall_x: %f\n\n",
     // ray->wall_dist, ray->line_height, ray->draw_start, ray->draw_end, ray->wall_x);
