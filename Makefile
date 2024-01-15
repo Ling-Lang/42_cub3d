@@ -17,6 +17,10 @@ SRC	:= 	src/main.c \
 		src/init/init_map.c \
 		src/utils/draw_utils.c \
 		src/utils/utils.c \
+		src/render/render_main.c \
+		src/render/render_dda.c \
+		src/render/render_raycasting.c \
+		src/render/render_textures.c \
 		lib/get_next_line/get_next_line_utils.c \
 		lib/get_next_line/get_next_line.c
 

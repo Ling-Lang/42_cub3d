@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:45:53 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/11 16:32:58 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 12:26:45 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int	ft_check_dir(int i, t_data *data)
 	int	count;
 
 	count = 0;
-		// for(int j = 0; data->mapinfo.file[j]; j++)
-		// ft_printf("%s", data->mapinfo.file[j]);
 	while (data->mapinfo.file[i] != NULL)
 	{
 		if(count == 6)

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/11 16:17:35 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 12:46:27 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_player
 	char	dir;
 	double	pos_x;
 	double	pos_y;
+	// dir_x dir_y in welche richtung der spieler schaut.
 	double	dir_x;
 	double	dir_y;
 	double	plane_x;

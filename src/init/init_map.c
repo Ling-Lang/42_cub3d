@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 12:04:03 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 12:50:35 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	ft_isplayer(char c)
 
 static bool ft_check_around(t_data *data, int col, int rows)
 {
-    // ft_printf("%s\n", data->mapinfo.file[col][rows]);
     if(ft_isalnum(data->mapinfo.file[col + 1][rows]) == 1)
     {
         if(ft_isalnum(data->mapinfo.file[col - 1][rows]) == 1)
@@ -88,6 +87,8 @@ static int	ft_validate_map(t_data *data, int i)
                             else
                             {
                                 player = true;
+                                data->player.pos_y = len * 64;
+                                data->player.pos_x = rows * 64;
                                 data->player.dir = data->mapinfo.file[col][rows];
                             }
                         }

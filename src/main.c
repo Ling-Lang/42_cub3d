@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 14:56:58 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 12:27:25 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void hook(void *v_data)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	ft_clear(data);
+	ft_render(data, 0);
 	//TODO Render function implementieren.
 }
 
@@ -35,9 +36,8 @@ int	main(int argc, char **argv)
 	parse_arguments(argv[1], &data);			//Parse die Argumente
 	init_mlx(&data);							//Initialisiere die MLX-Bibliothek @Jens: bin heute bis hierher gekommen. Lass uns aber das "parse_arguments" nochmal gemeinsam anschauen. Bin mir das noch nicht so ganz sicher. Bis Morgen. Gruss Robin :-)
 	init_textures(&data);						//Lade Texturen
-	ft_printf("%c", data.player.dir);
 	print_controls();							//Gib Informationen zu den Steuerelementen aus
-	// render_images(&data);						//Rendere die Bilder
+	ft_render(&data, 1);						//Rendere die Bilder
 	// listen_for_input(&data);					//Höre auf Benutzereingaben
 	mlx_loop_hook(data.mlx, hook, &data);	//Höre auf Benutzereingaben
 	mlx_loop(data.mlx);							//Starte die MLX-Loop

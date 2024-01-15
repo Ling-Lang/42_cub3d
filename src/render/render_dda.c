@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_func1.c                                      :+:      :+:    :+:   */
+/*   render_dda.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 11:33:27 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/09 11:34:16 by rmarquar         ###   ########.fr       */
+/*   Created: 2024/01/15 12:14:30 by jkulka            #+#    #+#             */
+/*   Updated: 2024/01/15 12:16:19 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include ".././include/cub3d.h"
+#include "../../include/cub3d.h"
 
-void	init_img_clean(t_img *img)
-{
-	img->img = NULL;
-	img->addr = NULL;
-	img->pixel_bits = 0;
-	img->size_line = 0;
-	img->endian = 0;
-}
