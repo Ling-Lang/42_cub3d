@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= gcc
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast -g
 DEBUG	:= -g
 LIBMLX	:= ./lib/MLX42
 LIBFT	:= ./lib/Libft

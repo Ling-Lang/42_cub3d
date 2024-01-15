@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 15:56:03 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 16:25:11 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,12 @@ void raycast(t_data *data)
     
     ray = data->ray;
     x = -1;
-
     while(++x < WIN_WIDTH)
     {
         init_raycast(x, &ray, data);
         set_dda(&ray, data);
         do_dda(&ray, data);
         calc_height(&ray, data);
-        // texture
         if(x + 1< WIN_WIDTH && ray.draw_start >= 0 && ray.draw_end < WIN_HEIGHT)
         {
             int color;
@@ -105,13 +103,8 @@ void raycast(t_data *data)
             else
                 color = get_rgba(0, 0, 255, 255);
             drawThickLine(data, x + 1, ray.draw_start, x + 1, ray.draw_end, 1, color, false);
-            // mlx_put_pixel(data->img, x + 1, ray.draw_start, get_rgba(255, 0, 0, 255));
-            // mlx_put_pixel(data->img, x + 1, ray.draw_end, get_rgba(255, 0, 0, 255));
-            
         }
         mlx_image_to_window(data->mlx, data->img, 0, 0);
-        // data->img->pixels[0];
     }
     return ;
-    
 }

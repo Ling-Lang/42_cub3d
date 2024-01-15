@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:17:09 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 15:56:54 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/15 16:11:38 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ int ft_render(t_data *data, bool direct)
     {
         ft_clear(data);
         raycast(data);
+        data->player.has_moved = false;
     }
 }

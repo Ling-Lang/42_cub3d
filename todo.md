@@ -3,9 +3,11 @@
 
 ### Hauptziele
 * [x] Map parsing
-* [ ] Basic rendering nur Farben
-* [ ] Movement
+* [x] Basic rendering nur Farben
+* [?] Movement
 * [ ] Textures
+* [ ] Performance
+
 
 ### Bugs
 
