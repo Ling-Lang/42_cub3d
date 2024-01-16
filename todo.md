@@ -67,7 +67,7 @@ void	render_raycast(t_data *data)
 
 	x = 0;
 	ray = data->ray;                                --> Einen Struct für unseren Strahlen erzeugen
-	
+
     while (x < data->win_width)                     --> wir iterrieren nun über jede X-Linie bis wir unsere Bildschirmbreite erreicht haben. In unserem Fall (Win-width(320)!). Es wird also von 0 bis 319 durchiterriert.
 	{
         init_raycasting_info(x, &ray, player);      --> wir setzen für jede X-Linie einen Wert und machen dies in unserer Extra Funktion init_raycasting_info(x, &ray, player)		 --> (Berechnungen)
@@ -160,7 +160,7 @@ Zusammengefasst implementiert die raycasting-Funktion den grundlegenden Raycasti
 
 
 
-Zum Thema Rendern:
+Zum Thema Rendern: fuer Mittwoch den 17.01.2024:
 ------------------
 ------------------
 
@@ -201,7 +201,7 @@ Zusammengefasst erstellt und rendert die Funktion render_frame einen Frame, inde
 --------------------------------------------------
 Eintrag Robin am 15.01.2024 / 23:20 Uhr:				Zustäzlicher Hinweis zur Performance --> siehe Line 193-195
 --------------------------------------------------
--------------------------------------------------- 
+--------------------------------------------------
 
 Thema: Boden und Decke verlegen :-)
 ------------------------------------
