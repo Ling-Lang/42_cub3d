@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_data.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/15 20:06:42 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/16 12:45:09 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ static void	player_initialize(t_player *player)
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
 	player->has_moved = 0;
-	player->rotate = 0.01;
-	player->speed = 1;
+	player->rotate = 0.06;
+	player->speed = 5;
 }
 
 void	data_initialize(t_data *data)

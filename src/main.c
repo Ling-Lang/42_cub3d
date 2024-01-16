@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 20:16:40 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/16 13:14:38 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,48 @@ void k_hook(mlx_key_data_t key, void *v_data)
 	t_data *data = v_data;
 	if(key.key == MLX_KEY_W)
 	{
-		data->player.pos_y += data->player.dir_y * data->player.speed;
-		data->player.pos_x += data->player.dir_x * data->player.speed;
-		data->player.has_moved = true;
+		double new_x = data->player.pos_x + data->player.dir_x * data->player.speed; 
+		double new_y = data->player.pos_y + data->player.dir_y * data->player.speed;
+		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 - 1] != '1')
+		{
+			data->player.pos_y += data->player.dir_y * data->player.speed;
+			data->player.pos_x += data->player.dir_x * data->player.speed;
+			data->player.has_moved = true;
+			
+		}
 	}
 	else if(key.key == MLX_KEY_S)
 	{
-		data->player.pos_y -= data->player.dir_y * data->player.speed;
-		data->player.pos_x -= data->player.dir_x * data->player.speed;
-		data->player.has_moved = true;	
+		double new_x = data->player.pos_x - data->player.dir_x * data->player.speed; 
+		double new_y = data->player.pos_y - data->player.dir_y * data->player.speed;
+		if(data->mapinfo.map[(int)new_y / 64 + 1][(int)new_x / 64 + 1] != '1')
+		{
+			data->player.pos_y -= data->player.dir_y * data->player.speed;
+			data->player.pos_x -= data->player.dir_x * data->player.speed;
+			data->player.has_moved = true;	
+		}
 	}
 	else if(key.key == MLX_KEY_A)
 	{
-		data->player.pos_x += data->player.dir_y * data->player.speed;
-		data->player.pos_y -= data->player.dir_x * data->player.speed;
-		data->player.has_moved = true;
+		double new_x = data->player.pos_x + data->player.dir_x * data->player.speed; 
+		double new_y = data->player.pos_y - data->player.dir_y * data->player.speed;
+		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 + 1] != '1')
+		{
+			data->player.pos_x += data->player.dir_y * data->player.speed;
+			data->player.pos_y -= data->player.dir_x * data->player.speed;
+			data->player.has_moved = true;
+		}
 	}
 	else if(key.key == MLX_KEY_D)
 	{
-		data->player.pos_x -= data->player.dir_y * data->player.speed;
-		data->player.pos_y += data->player.dir_x * data->player.speed;
-		data->player.has_moved = true;
+		double new_x = data->player.pos_x - data->player.dir_x * data->player.speed; 
+		double new_y = data->player.pos_y + data->player.dir_y * data->player.speed;
+		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 + 1] != '1')
+		{
+			data->player.pos_x -= data->player.dir_y * data->player.speed;
+			data->player.pos_y += data->player.dir_x * data->player.speed;
+			data->player.has_moved = true;
+		}
 	}
 	else if(key.key == MLX_KEY_Q)
 	{
@@ -69,7 +90,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 		data->player.plane_y = tmp_x * sin(rotspeed) + data->player.plane_y * cos(rotspeed);
 		data->player.has_moved = true;
 	}
-	else if(key.key = MLX_KEY_E)
+	else if(key.key == MLX_KEY_E)
 	{
 		double rotspeed;
 		double tmp_x = data->player.dir_x;

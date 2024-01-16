@@ -229,7 +229,7 @@ HINWEIS: Das hier durchgeführte Stepping ist eine affine Texturzuordnung, was b
 
 //BODENGUSS
 
-     for(int y = 0; y < h; y++)
+	for(int y = 0; y < h; y++)
     {
       // rayDir für den Strahl ganz links (x = 0) und den Strahl ganz rechts (x = w)
     	float rayDirX0 = dirX - planeX;

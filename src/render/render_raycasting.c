@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycasting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 19:53:34 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/16 12:43:32 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void raycast(t_data *data)
                 color = get_rgba(0, 0, 255, 255);
             drawThickLine(data, x + 1, ray.draw_start, ray.draw_end, color);
         }
-        // mlx_image_to_window(data->mlx, data->img, 0, 0);
     }
     return ;
 }

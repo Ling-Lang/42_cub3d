@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 14:52:41 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/16 12:46:09 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 #include "structs.h"
 #include "../lib/get_next_line/get_next_line.h"
 
-# define WIN_WIDTH 640
-# define WIN_HEIGHT 480
+# define WIN_WIDTH 1920
+# define WIN_HEIGHT 1080
 
 
 
