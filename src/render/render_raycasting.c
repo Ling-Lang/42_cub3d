@@ -6,12 +6,12 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/16 12:43:32 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/17 13:33:42 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+void ft_get_side(t_data *data, t_ray *ray);
 static void init_raycast(int x, t_ray *ray, t_data *data)
 {
     ray_init(ray);
@@ -58,6 +58,8 @@ void raycast(t_data *data)
                 color = get_rgba(255, 0, 0, 255);
             else
                 color = get_rgba(0, 0, 255, 255);
+            ft_get_side(data, &ray);
+            ft_printf("\t%d\n", data->texinfo.side);
             drawThickLine(data, x + 1, ray.draw_start, ray.draw_end, color);
         }
     }
