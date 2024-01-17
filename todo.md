@@ -196,37 +196,6 @@ Zusammengefasst erstellt und rendert die Funktion render_frame einen Frame, inde
 
 
 
-
---------------------------------------------------
---------------------------------------------------
-Eintrag Robin am 15.01.2024 / 23:20 Uhr:				Zustäzlicher Hinweis zur Performance --> siehe Line 193-195
---------------------------------------------------
---------------------------------------------------
-
-Thema: Boden und Decke verlegen :-)
-------------------------------------
-
-zum einlesen:
-
-Im Gegensatz zu den Wandtexturen sind die Boden- und Deckentexturen horizontal und können daher nicht auf die gleiche Weise gezeichnet werden wie die Wand mit vertikalen Streifen. Stattdessen werden sie mit horizontalen Scanlinien gezeichnet. Die Perspektive ähnelt der von Wänden, ist jedoch um 90 Grad gedreht. Im Gegensatz zu den Wänden, bei denen genau eine Textur pro vertikalen Streifen verwendet wurde, können jedoch mehrere Bodentexturen (oder dieselbe wiederholt) unsere horizontale Linie kreuzen.
-
-Das Zeichnen der Decke erfolgt auf die gleiche Weise wie das Zeichnen des Bodens, daher wird hier nur der Boden erklärt.
-
-Der Bodenguss erfolgt "vor"!!! den Wänden, also zeichnen wir zunächst den "gesamten Boden" (und die Decke) und überschreiben dann im nächsten Schritt wie zuvor einen Teil der Pixel mit den Wänden.
-
-Kurz gesagt funktioniert der Bodenguss wie folgt: Scanline für Scanline vorgehen. Berechnen Sie für die aktuelle Scanlinie die Position auf dem Boden, die dem linken Pixel der Scanlinie entspricht, und die Position, die dem rechten Pixel entspricht. Dies kann dadurch berechnet werden, dass der Strahl, der von der Kamera ausgeht und durch dieses Pixel der Kameraebene geht, auf den Boden trifft. Die Formeln und Erläuterungen hierzu finden wir weiter unten im Code zum Verlegen von Böden.
-
-Wir können dann zwischen diesem Punkt ganz links und ganz rechts linear interpolieren, um die Bodenkoordinaten zu erhalten, die mit den anderen Pixeln dieser Scanlinie übereinstimmen. Das funktioniert, weil die Bodenstruktur perfekt horizontal ist.
-
-Jetzt kommt der neue Bodengusscode, der Zeile für Zeile statt vertikaler Streifen für vertikaler Streifen vorgeht.
-Die Formel für rowDistance, den horizontalen Abstand von der Kamera zum Boden für die aktuelle Reihe, der posZ / p ist, wobei p der aktuelle Pixelabstand von der Bildschirmmitte ist, kann wie folgt erklärt werden:
-
-Der Kamerastrahl geht durch die folgenden zwei Punkte: die Kamera selbst, die sich auf einer bestimmten Höhe (posZ) befindet, und einen Punkt vor der Kamera (durch eine gedachte vertikale Ebene, die die Bildschirmpixel enthält) mit horizontalem Abstand 1 von der Kamera und die vertikale Position p niedriger als posZ (posZ - p). Beim Durchlaufen dieses Punktes ist die Linie vertikal um p Einheiten und horizontal um 1 Einheit zurückgelegt worden. Um den Boden zu erreichen, muss es stattdessen PosZ-Einheiten zurücklegen. Es bewegt sich horizontal im gleichen Verhältnis. Das Verhältnis betrug 1/p für den Durchgang durch die Kameraebene. Wenn wir also posZ-mal weiter gehen, um den Boden zu erreichen, beträgt die gesamte horizontale Distanz posZ/p.
-
-HINWEIS: Das hier durchgeführte Stepping ist eine affine Texturzuordnung, was bedeutet, dass wir linear zwischen zwei Punkten interpolieren können, anstatt für jedes Pixel eine andere Unterteilung berechnen zu müssen. Dies ist im Allgemeinen nicht perspektivisch korrekt, aber für perfekt horizontale Böden/Decken (und auch perfekt vertikale Wände) ist es so, sodass wir es für Raycasting verwenden können.
-
-
-
 //BODENGUSS
 
 	for(int y = 0; y < h; y++)
@@ -285,3 +254,236 @@ HINWEIS: Das hier durchgeführte Stepping ist eine affine Texturzuordnung, was b
          buffer[screenHeight - y - 1][x] = color;
       }
     }
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+Mittwoch 17. Jan 2024 / 14:30 Uhr:
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+Vorschlag von Copilot Workspace:
+--------------------------------
+
+
+
+
+void update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x)
+{
+
+```c
+void update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x)
+```
+Die Funktion nimmt vier Parameter: `data` enthält allgemeine Daten und Einstellungen, `tex` enthält Informationen über die Textur, `ray` enthält Informationen über den Strahl und `x` ist die x-Koordinate des Pixels, das aktualisiert werden soll.
+
+```c
+{
+    int y;
+    int color;
+```
+Zwei lokale Variablen werden deklariert: `y` ist die y-Koordinate des Pixels, das aktualisiert werden soll, und `color` ist die Farbe, die auf das Pixel angewendet werden soll.
+
+```c
+    ft_get_side(data, ray); // Use your function to get the texture index
+```
+Die Funktion `ft_get_side` wird aufgerufen, um den Index der Textur zu bestimmen, die auf der Seite der Wand angezeigt werden soll, auf die der Strahl trifft.
+
+```c
+    tex->x = (int)(ray->wall_x * (double)(tex->size));
+```
+Die x-Koordinate des Texturpixels wird berechnet, indem die x-Koordinate der Wand, auf die der Strahl trifft, mit der Größe der Textur multipliziert und das Ergebnis in einen Integer umgewandelt wird.
+
+```c
+    if ((ray->side == 0 && ray->dir_x > 0)
+        || (ray->side == 1 && ray->dir_y < 0))
+        tex->x = tex->size - tex->x - 1;
+```
+Wenn der Strahl in eine bestimmte Richtung zeigt, wird die x-Koordinate des Texturpixels umgekehrt.
+
+```c
+    tex->step = 1.0 * tex->size / ray->line_height;
+```
+Der Schritt, mit dem durch die Textur gelaufen wird, wird berechnet, indem die Größe der Textur durch die Höhe der Linie geteilt wird.
+
+```c
+    tex->pos = (ray->draw_start - WIN_HEIGHT / 2
+            + ray->line_height / 2) * tex->step;
+```
+Die Anfangsposition in der Textur wird berechnet.
+
+```c
+    y = ray->draw_start;
+    while (y < ray->draw_end)
+```
+Eine Schleife wird gestartet, die von der Anfangs- bis zur Endposition des Strahls läuft.
+
+```c
+    {
+        tex->y = (int)tex->pos & (tex->size - 1);
+        tex->pos += tex->step;
+```
+In jedem Durchlauf der Schleife wird die y-Koordinate des Texturpixels berechnet und die Position in der Textur wird um den Schritt erhöht.
+
+```c
+        color = data->textures[data->texinfo.side][tex->size * tex->y + tex->x];
+```
+Die Farbe des Pixels wird aus der Textur abgerufen.
+
+```c
+        if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
+            color = (color >> 1) & 8355711;
+```
+Wenn die Textur auf der Nord- oder Ostseite angezeigt wird, wird die Farbe gedimmt.
+
+```c
+        if (color > 0)
+            data->texture_pixels[y * WIN_WIDTH + x] = color;
+```
+Wenn die Farbe größer als 0 ist, wird das Pixel in der Textur auf diese Farbe gesetzt.
+
+```c
+        y++;
+    }
+}
+
+
+
+
+HIER NOCHMAL DIE GESAMTE FUNKTION:
+
+
+void update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x)
+{
+    int y;
+    int color;
+
+    ft_get_side(data, ray); // Use your function to get the texture index
+    tex->x = (int)(ray->wall_x * (double)(tex->size));
+    if ((ray->side == 0 && ray->dir_x > 0)
+        || (ray->side == 1 && ray->dir_y < 0))
+        tex->x = tex->size - tex->x - 1;
+    tex->step = 1.0 * tex->size / ray->line_height;
+    tex->pos = (ray->draw_start - WIN_HEIGHT / 2
+            + ray->line_height / 2) * tex->step;
+    y = ray->draw_start;
+    while (y < ray->draw_end)
+    {
+        tex->y = (int)tex->pos & (tex->size - 1);
+        tex->pos += tex->step;
+        color = data->textures[data->texinfo.side][tex->size * tex->y + tex->x];
+        if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
+            color = (color >> 1) & 8355711;
+        if (color > 0)
+            data->texture_pixels[y * WIN_WIDTH + x] = color;
+        y++;
+    }
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+nach raycast in unserer Funktion "render_main.c"
+-->
+danach weiter mit "render_frame(data)" !
+-->
+
+-------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+
+Die Funktion `render_frame(t_data *data)` ist dafür verantwortlich, ein Bild (Frame) zu rendern und es auf das Fenster zu zeichnen. Hier ist eine Schritt-für-Schritt-Erklärung:
+
+```c
+static void	render_frame(t_data *data)
+{
+    t_img	image;
+    int		x;
+    int		y;
+```
+Die Funktion beginnt mit der Deklaration von drei lokalen Variablen: `image` ist ein `t_img`-Objekt, das das zu rendernde Bild repräsentiert, `x` und `y` sind Koordinaten, die zum Durchlaufen jedes Pixels im Bild verwendet werden.
+
+```c
+    image.img = NULL;
+    init_img(data, &image, data->win_width, data->win_height);
+```
+Das `image`-Objekt wird initialisiert mit der Funktion `init_img`, die die Breite und Höhe des Fensters als Parameter erhält.
+
+```c
+    y = 0;
+    while (y < data->win_height)
+    {
+        x = 0;
+        while (x < data->win_width)
+        {
+```
+Zwei verschachtelte Schleifen werden gestartet, um durch jedes Pixel im Bild zu laufen.
+
+```c
+            set_frame_image_pixel(data, &image, x, y);
+```
+Die Funktion `set_frame_image_pixel` wird aufgerufen, um das Pixel an der Position `(x, y)` im Bild zu setzen. Diese Funktion nimmt die Daten, das Bild und die Koordinaten als Parameter.
+
+```c
+            x++;
+        }
+        y++;
+    }
+```
+Die x- und y-Koordinaten werden erhöht, um das nächste Pixel zu erreichen.
+
+```c
+    mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0);
+```
+Die Funktion `mlx_put_image_to_window` wird aufgerufen, um das gerenderte Bild auf das Fenster zu zeichnen. Diese Funktion nimmt den MLX-Zeiger, das Fenster und das Bild als Parameter.
+
+```c
+    mlx_destroy_image(data->mlx, image.img);
+}
+```
+Schließlich wird die Funktion `mlx_destroy_image` aufgerufen, um das Bild zu löschen und Speicher freizugeben. Diese Funktion nimmt den MLX-Zeiger und das Bild als Parameter.
+
+Bitte beachten Sie, dass die Funktionen `init_img` und `set_frame_image_pixel` in Ihrem Code definiert sein müssen. Die genaue Implementierung dieser Funktionen hängt von den Details Ihres Projekts ab.
+
+
+----------------------------------
+HIER NOCHMAL DIE GESAMTE FUNKTION:
+----------------------------------
+
+
+static void	render_frame(t_data *data)
+{
+	t_img	image;
+	int		x;
+	int		y;
+
+	image.img = NULL;
+	init_img(data, &image, data->win_width, data->win_height);
+	y = 0;
+	while (y < data->win_height)
+	{
+		x = 0;
+		while (x < data->win_width)
+		{
+			set_frame_image_pixel(data, &image, x, y);
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0);
+	mlx_destroy_image(data->mlx, image.img);
+}
+
+------------------------------------------------------------------
+UND HIER NOCH EINE KOPIE DER FUNKTION 'SET_FRAME_IMAGE_PIXEL'
+------------------------------------------------------------------
+
+static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
+{
+	if (data->texture_pixels[y][x] > 0)
+		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
+	else if (y < data->win_height / 2)
+		set_image_pixel(image, x, y, data->texinfo.hex_ceiling);
+	else if (y < data->win_height -1)
+		set_image_pixel(image, x, y, data->texinfo.hex_floor);
+}
