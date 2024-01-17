@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/17 15:54:59 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/17 16:05:40 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void ft_putpixel_color(t_data *data, t_ray *ray, int x)
         data->texinfo.y = (int)data->texinfo.pos & (data->texinfo.size - 1);
         data->texinfo.pos += data->texinfo.step;
         // printf("\t%d\n", data->textures[data->texinfo.side][data->texinfo.size * data->texinfo.y + data->texinfo.x]);
-        color = data->textures[data->texinfo.side]->pixels[data->texinfo.size * data->texinfo.y + data->texinfo.x];
+        color = data->textures[data->texinfo.side]->pixels[data->texinfo.size * (data->texinfo.y + data->texinfo.x)];
         // if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
             //  color = (color >> 1) & 8355711;
         // data->textures[data->texinfo.side]->pixels[data->texinfo.size * data->texinfo.y + data->texinfo.x];
