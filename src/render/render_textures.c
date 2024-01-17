@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de>     +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:41 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/15 19:53:50 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/17 13:31:27 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,20 @@ void calc_height(t_ray *ray, t_data *data)
     // ray->wall_dist, ray->line_height, ray->draw_start, ray->draw_end, ray->wall_x);
 }
 
-
-static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
+void ft_get_side(t_data *data, t_ray *ray)
 {
-	if (ray->side == 0)
-		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
-	else
-		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
-	ray->line_height = (int)(data->win_height / ray->wall_dist);
-	ray->draw_start = -(ray->line_height) / 2 + data->win_height / 2;
-	if (ray->draw_start < 0)
-		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + data->win_height / 2;
-	if (ray->draw_end >= data->win_height)
-		ray->draw_end = data->win_height - 1;
-	if (ray->side == 0)
-		ray->wall_x = player->pos_y + ray->wall_dist * ray->dir_y;
-	else
-		ray->wall_x = player->pos_x + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+    if(ray->side == 1)
+    {
+        if(ray->dir_x > 0)
+            data->texinfo.side = EAST;
+        else
+            data->texinfo.side = WEST;
+    }
+    else
+    {
+        if(ray->dir_y > 0)
+            data->texinfo.side = NORTH;
+        else
+            data->texinfo.side = SOUTH;
+    }
 }
