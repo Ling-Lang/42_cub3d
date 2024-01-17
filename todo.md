@@ -303,7 +303,7 @@ Die x-Koordinate des Texturpixels wird berechnet, indem die x-Koordinate der Wan
 Wenn der Strahl in eine bestimmte Richtung zeigt, wird die x-Koordinate des Texturpixels umgekehrt.
 
 ```c
-    tex->step = 1.0 * tex->size / ray->line_height;
+    tex->step = tex->size / ray->line_height;
 ```
 Der Schritt, mit dem durch die Textur gelaufen wird, wird berechnet, indem die Größe der Textur durch die Höhe der Linie geteilt wird.
 
@@ -327,7 +327,7 @@ Eine Schleife wird gestartet, die von der Anfangs- bis zur Endposition des Strah
 In jedem Durchlauf der Schleife wird die y-Koordinate des Texturpixels berechnet und die Position in der Textur wird um den Schritt erhöht.
 
 ```c
-        color = data->textures[data->texinfo.side][tex->size * tex->y + tex->x];
+        color = data->textures[data->texinfo.side].pixels[tex->size * tex->y + tex->x];
 ```
 Die Farbe des Pixels wird aus der Textur abgerufen.
 
@@ -347,7 +347,7 @@ Wenn die Farbe größer als 0 ist, wird das Pixel in der Textur auf diese Farbe 
         y++;
     }
 }
-
+```
 
 
 
@@ -382,7 +382,8 @@ void update_texture_pixels(t_data *data, t_texinfo *tex, t_ray *ray, int x)
 }
 
 -------------------------------------------------------------------------------------------------------------------------------
--------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------
+-----------------------------------------------------
 
 nach raycast in unserer Funktion "render_main.c"
 -->
@@ -438,6 +439,7 @@ Die x- und y-Koordinaten werden erhöht, um das nächste Pixel zu erreichen.
 Die Funktion `mlx_put_image_to_window` wird aufgerufen, um das gerenderte Bild auf das Fenster zu zeichnen. Diese Funktion nimmt den MLX-Zeiger, das Fenster und das Bild als Parameter.
 
 ```c
+{
     mlx_destroy_image(data->mlx, image.img);
 }
 ```
@@ -450,7 +452,7 @@ Bitte beachten Sie, dass die Funktionen `init_img` und `set_frame_image_pixel` i
 HIER NOCHMAL DIE GESAMTE FUNKTION:
 ----------------------------------
 
-
+```c 
 static void	render_frame(t_data *data)
 {
 	t_img	image;
@@ -473,11 +475,12 @@ static void	render_frame(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, image.img, 0, 0);
 	mlx_destroy_image(data->mlx, image.img);
 }
+```
 
 ------------------------------------------------------------------
 UND HIER NOCH EINE KOPIE DER FUNKTION 'SET_FRAME_IMAGE_PIXEL'
 ------------------------------------------------------------------
-
+```c
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 {
 	if (data->texture_pixels[y][x] > 0)
@@ -487,3 +490,4 @@ static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
 	else if (y < data->win_height -1)
 		set_image_pixel(image, x, y, data->texinfo.hex_floor);
 }
+```

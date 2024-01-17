@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/17 13:33:42 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/17 15:54:59 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,55 @@ void drawThickLine(t_data *data, int x, int y1, int y2, int color)
         }
     }
 }
+void ft_putpixel_color(t_data *data, t_ray *ray, int x)
+{
+    int y;
+    int color;
+    
+    ft_get_side(data, ray);
+    data->texinfo.x = (int)(ray->wall_x * (double)(data->texinfo.size));
+    if((ray->side == 0 && ray->dir_x > 0)
+        || (ray->side == 1 && ray->dir_y < 0))
+        data->texinfo.x = data->texinfo.size - data->texinfo.x - 1;
+    //TODO 1.0 * rest = step
+    data->texinfo.step = 1.0 * data->texinfo.size / ray->line_height;
+    data->texinfo.pos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) * data->texinfo.step;
+    y = ray->draw_start;
+    while(y < ray->draw_end)
+    {
+        data->texinfo.y = (int)data->texinfo.pos & (data->texinfo.size - 1);
+        data->texinfo.pos += data->texinfo.step;
+        // printf("\t%d\n", data->textures[data->texinfo.side][data->texinfo.size * data->texinfo.y + data->texinfo.x]);
+        color = data->textures[data->texinfo.side]->pixels[data->texinfo.size * data->texinfo.y + data->texinfo.x];
+        // if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
+            //  color = (color >> 1) & 8355711;
+        // data->textures[data->texinfo.side]->pixels[data->texinfo.size * data->texinfo.y + data->texinfo.x];
+        mlx_put_pixel(data->img, x, y, color);
+        y++;
+    }
+    
+}
+//     ft_get_side(data, ray); // Use your function to get the texture index
+//     tex->x = (int)(ray->wall_x * (double)(tex->size));
+//     if ((ray->side == 0 && ray->dir_x > 0)
+//         || (ray->side == 1 && ray->dir_y < 0))
+//         tex->x = tex->size - tex->x - 1;
+//     tex->step = 1.0 * tex->size / ray->line_height;
+//     tex->pos = (ray->draw_start - WIN_HEIGHT / 2
+//             + ray->line_height / 2) * tex->step;
+//     y = ray->draw_start;
+//     while (y < ray->draw_end)
+//     {
+//         tex->y = (int)tex->pos & (tex->size - 1);
+//         tex->pos += tex->step;
+//         color = data->textures[data->texinfo.side][tex->size * tex->y + tex->x];
+//         if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
+//             color = (color >> 1) & 8355711;
+//         if (color > 0)
+//             data->texture_pixels[y * WIN_WIDTH + x] = color;
+//         y++;
+//     }
+// }
 
 void raycast(t_data *data)
 {
@@ -53,14 +102,14 @@ void raycast(t_data *data)
         calc_height(&ray, data);
         if(x + 1< WIN_WIDTH && ray.draw_start >= 0 && ray.draw_end < WIN_HEIGHT)
         {
-            int color;
-            if(ray.side == 0)
-                color = get_rgba(255, 0, 0, 255);
-            else
-                color = get_rgba(0, 0, 255, 255);
-            ft_get_side(data, &ray);
-            ft_printf("\t%d\n", data->texinfo.side);
-            drawThickLine(data, x + 1, ray.draw_start, ray.draw_end, color);
+            ft_putpixel_color(data, &ray, x + 1);
+            // int color;
+            // if(ray.side == 0)
+            //     color = get_rgba(255, 0, 0, 255);
+            // else
+            //     color = get_rgba(0, 0, 255, 255);
+            // ft_get_side(data, &ray);
+            // drawThickLine(data, x + 1, ray.draw_start, ray.draw_end, color);
         }
     }
     return ;
