@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycasting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
+/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/17 16:05:40 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/17 16:48:01 by rmarquar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void init_raycast(int x, t_ray *ray, t_data *data)
     ray->dir_y = data->player.dir_y + data->player.plane_y * ray->camera_x;
     ray->map_x = (int)data->player.pos_x / 64;
     ray->map_y = (int)data->player.pos_y / 64;
-    ray->deltadist_x = fabs(1 / ray->dir_x);   
+    ray->deltadist_x = fabs(1 / ray->dir_x);
     ray->deltadist_y = fabs(1 / ray->dir_y);
     // printf("\tcamera_x: %f\n\tdir_x: %f\n\tdir_y%f\n\tmap_x (int): %d\n\tmap_y (int): %d\n\tdeltadist_x: %f\n\tdeltadist_y: %f\n\n",
     // ray->camera_x, ray->dir_x, ray->dir_x, ray->map_x, ray->map_y, ray->deltadist_x, ray->deltadist_y);
@@ -37,11 +37,20 @@ void drawThickLine(t_data *data, int x, int y1, int y2, int color)
         }
     }
 }
+
+int     calc_for_y(float big, float small)
+{
+    int y = 0;
+
+    y = fabs((small / big) * 64);
+    return (y);
+}
+
 void ft_putpixel_color(t_data *data, t_ray *ray, int x)
 {
     int y;
     int color;
-    
+
     ft_get_side(data, ray);
     data->texinfo.x = (int)(ray->wall_x * (double)(data->texinfo.size));
     if((ray->side == 0 && ray->dir_x > 0)
@@ -53,6 +62,8 @@ void ft_putpixel_color(t_data *data, t_ray *ray, int x)
     y = ray->draw_start;
     while(y < ray->draw_end)
     {
+        int texture = calc_for_y(ray->draw_end - ray->draw_start, y - ray->draw_start);
+        printf("%d\n", texture);
         data->texinfo.y = (int)data->texinfo.pos & (data->texinfo.size - 1);
         data->texinfo.pos += data->texinfo.step;
         // printf("\t%d\n", data->textures[data->texinfo.side][data->texinfo.size * data->texinfo.y + data->texinfo.x]);
@@ -63,7 +74,7 @@ void ft_putpixel_color(t_data *data, t_ray *ray, int x)
         mlx_put_pixel(data->img, x, y, color);
         y++;
     }
-    
+
 }
 //     ft_get_side(data, ray); // Use your function to get the texture index
 //     tex->x = (int)(ray->wall_x * (double)(tex->size));
@@ -91,7 +102,7 @@ void raycast(t_data *data)
 {
     int x;
     t_ray ray;
-    
+
     ray = data->ray;
     x = -1;
     while(++x < WIN_WIDTH)
