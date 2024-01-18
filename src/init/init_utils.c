@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:38:51 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/12 11:58:34 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/18 11:26:29 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ int ft_get_color(char *raw_value)
 	int res;
 	// ft_printf("r: %s g:%s b:%s\n", tmp_split[0], tmp_split[1], tmp_split[2]);
 	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]), ft_atoi(tmp_split[2]), 255);
+	int i = 0;
+	while(tmp_split[i])
+	{
+		free(tmp_split[i]);
+		i++;
+	}
 	free(tmp_split);
 	return res;
 }

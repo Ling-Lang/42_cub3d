@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/16 13:14:38 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/18 11:21:57 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,20 @@ static void	print_controls()
 	printf("\n");
 }
 
+void ft_close(t_data *data)
+{
+	mlx_close_window(data->mlx);
+	free(data->colors);
+	system("leaks cub3d");
+
+	exit(EXIT_SUCCESS);
+}
 void hook(void *v_data)
 {
 	t_data *data = v_data;
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
-		mlx_close_window(data->mlx);
-		system("leaks cub3d");
+		ft_close(data);
 	}
 	if(data->player.has_moved == true)
 		ft_render(data, 0);
@@ -37,7 +44,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 	{
 		double new_x = data->player.pos_x + data->player.dir_x * data->player.speed; 
 		double new_y = data->player.pos_y + data->player.dir_y * data->player.speed;
-		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 - 1] != '1')
+		if(data->mapinfo.map[(int)round((new_y + 32) / 64)][(int)round((new_x + 32) / 64)] != '1')
 		{
 			data->player.pos_y += data->player.dir_y * data->player.speed;
 			data->player.pos_x += data->player.dir_x * data->player.speed;
@@ -49,7 +56,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 	{
 		double new_x = data->player.pos_x - data->player.dir_x * data->player.speed; 
 		double new_y = data->player.pos_y - data->player.dir_y * data->player.speed;
-		if(data->mapinfo.map[(int)new_y / 64 + 1][(int)new_x / 64 + 1] != '1')
+		if(data->mapinfo.map[(int)round((new_y - 32) / 64)][(int)round((new_x - 32) / 64)] != '1')
 		{
 			data->player.pos_y -= data->player.dir_y * data->player.speed;
 			data->player.pos_x -= data->player.dir_x * data->player.speed;
@@ -60,7 +67,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 	{
 		double new_x = data->player.pos_x + data->player.dir_x * data->player.speed; 
 		double new_y = data->player.pos_y - data->player.dir_y * data->player.speed;
-		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 + 1] != '1')
+		if(data->mapinfo.map[(int)round((new_y + 32) / 64)][(int)round((new_x + 32) / 64)] != '1')
 		{
 			data->player.pos_x += data->player.dir_y * data->player.speed;
 			data->player.pos_y -= data->player.dir_x * data->player.speed;
@@ -71,7 +78,7 @@ void k_hook(mlx_key_data_t key, void *v_data)
 	{
 		double new_x = data->player.pos_x - data->player.dir_x * data->player.speed; 
 		double new_y = data->player.pos_y + data->player.dir_y * data->player.speed;
-		if(data->mapinfo.map[(int)new_y / 64 - 1][(int)new_x / 64 + 1] != '1')
+		if(data->mapinfo.map[(int)round((new_y + 32) / 64)][(int)round((new_x + 32) / 64)] != '1')
 		{
 			data->player.pos_x -= data->player.dir_y * data->player.speed;
 			data->player.pos_y += data->player.dir_x * data->player.speed;
