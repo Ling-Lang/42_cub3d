@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:38:51 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/18 11:26:29 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/18 13:54:33 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,21 +65,22 @@ char	*get_value(char *line, char *name)
 	return (res);
 }
 
-//TODO Fehler mit nachfolgenden tabs oder spaces fixen (trim?)
-int ft_get_color(char *raw_value)
+// TODO Fehler mit nachfolgenden tabs oder spaces fixen (trim?)
+int	ft_get_color(char *raw_value)
 {
-	char **tmp_split;
+	char	**tmp_split;
+	int		res;
+	int		i;
 
 	tmp_split = ft_split(raw_value, ',');
-	int res;
-	// ft_printf("r: %s g:%s b:%s\n", tmp_split[0], tmp_split[1], tmp_split[2]);
-	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]), ft_atoi(tmp_split[2]), 255);
-	int i = 0;
-	while(tmp_split[i])
+	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]),
+			ft_atoi(tmp_split[2]), 255);
+	i = 0;
+	while (tmp_split[i])
 	{
 		free(tmp_split[i]);
 		i++;
 	}
 	free(tmp_split);
-	return res;
+	return (res);
 }

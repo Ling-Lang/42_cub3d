@@ -6,13 +6,13 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/16 12:45:09 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/18 13:54:28 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void ray_init(t_ray *ray)
+void	ray_init(t_ray *ray)
 {
 	ray->camera_x = 0;
 	ray->dir_x = 0;
@@ -27,10 +27,11 @@ void ray_init(t_ray *ray)
 	ray->deltadist_y = 0;
 	ray->wall_dist = 0;
 	ray->wall_x = 0;
-	ray->line_height = 0;	
+	ray->line_height = 0;
 	ray->draw_start = 0;
 	ray->draw_end = 0;
 }
+
 static void	texinfo_initialize(t_texinfo *textures)
 {
 	textures->size = TEX_SIZE;
@@ -81,9 +82,9 @@ void	data_initialize(t_data *data)
 	data->win_width = WIN_WIDTH;
 	data->texture_pixels = NULL;
 	data->colors = NULL;
+	data->color = 0;
 	player_initialize(&data->player);
 	mapinfo_initialize(&data->mapinfo);
 	texinfo_initialize(&data->texinfo);
 	ray_init(&data->ray);
-	
 }

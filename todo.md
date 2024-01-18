@@ -5,13 +5,16 @@
 * [x] Map parsing
 * [x] Basic rendering nur Farben
 * [?] Movement
-* [ ] Textures
-* [ ] Performance
+* [x] Textures
+* [x] Performance
 
 
 ### Bugs
 
 * [ ] Map parsing Segfault fixen bei tabs/leerzeichen nachpfad
+* [ ] Leaks fixen
+* [ ] Funktionen runterbrechen
+* [ ] Bonus vielleicht.
 
 ---
 

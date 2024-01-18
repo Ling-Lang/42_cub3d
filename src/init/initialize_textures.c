@@ -25,8 +25,8 @@ int	ft_check_dir(int i, t_data *data)
 	count = 0;
 	while (data->mapinfo.file[i] != NULL)
 	{
-		if(count == 6)
-			break;
+		if (count == 6)
+			break ;
 		if (ft_strcmp_cub3d(data->mapinfo.file[i], "NO") == 0)
 			data->texinfo.north = ft_check_dir_2(i, data, "NO", &count);
 		else if (ft_strcmp_cub3d(data->mapinfo.file[i], "SO") == 0)
@@ -47,8 +47,8 @@ int	ft_check_dir(int i, t_data *data)
 
 void	init_textures(t_data *data)
 {
-	int		i;
-	int		count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;

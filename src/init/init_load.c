@@ -12,9 +12,9 @@
 
 #include "../../include/cub3d.h"
 
-int ft_load_textures(t_data *data)
+int	ft_load_textures(t_data *data)
 {
-	mlx_texture_t *tmp;
+	mlx_texture_t	*tmp;
 
 	tmp = mlx_load_png(data->texinfo.north);
 	data->textures[NORTH] = mlx_texture_to_image(data->mlx, tmp);
@@ -25,13 +25,13 @@ int ft_load_textures(t_data *data)
 	tmp = mlx_load_png(data->texinfo.east);
 	data->textures[EAST] = mlx_texture_to_image(data->mlx, tmp);
 	free(tmp);
-    return 1;
+	return (1);
 }
 
-int ft_load_colors(t_data *data)
+int	ft_load_colors(t_data *data)
 {
-    data->colors = ft_calloc(2, sizeof(int));
+	data->colors = ft_calloc(2, sizeof(int));
 	data->colors[FLOOR] = ft_get_color(data->texinfo.floor);
 	data->colors[CEILING] = ft_get_color(data->texinfo.ceiling);
-    return 1;
+	return (1);
 }
