@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_raycasting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmarquar <rmarquar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:15 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/17 16:48:01 by rmarquar         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:47:37 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ int     calc_for_y(float big, float small)
     return (y);
 }
 
+int get_color2(int x, int y, mlx_image_t *img)
+{
+    int i = (y * img->width + x) * 4; // Multiply by 4 because each pixel is represented by 4 elements
+    int r = img->pixels[i];
+    int g = img->pixels[i + 1];
+    int b = img->pixels[i + 2];
+    int a = img->pixels[i + 3];
+    return get_rgba(r, g, b, a);
+}
+
 void ft_putpixel_color(t_data *data, t_ray *ray, int x)
 {
     int y;
@@ -56,47 +66,20 @@ void ft_putpixel_color(t_data *data, t_ray *ray, int x)
     if((ray->side == 0 && ray->dir_x > 0)
         || (ray->side == 1 && ray->dir_y < 0))
         data->texinfo.x = data->texinfo.size - data->texinfo.x - 1;
-    //TODO 1.0 * rest = step
     data->texinfo.step = 1.0 * data->texinfo.size / ray->line_height;
     data->texinfo.pos = (ray->draw_start - WIN_HEIGHT / 2 + ray->line_height / 2) * data->texinfo.step;
     y = ray->draw_start;
     while(y < ray->draw_end)
     {
-        int texture = calc_for_y(ray->draw_end - ray->draw_start, y - ray->draw_start);
-        printf("%d\n", texture);
-        data->texinfo.y = (int)data->texinfo.pos & (data->texinfo.size - 1);
-        data->texinfo.pos += data->texinfo.step;
-        // printf("\t%d\n", data->textures[data->texinfo.side][data->texinfo.size * data->texinfo.y + data->texinfo.x]);
-        color = data->textures[data->texinfo.side]->pixels[data->texinfo.size * (data->texinfo.y + data->texinfo.x)];
-        // if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
-            //  color = (color >> 1) & 8355711;
-        // data->textures[data->texinfo.side]->pixels[data->texinfo.size * data->texinfo.y + data->texinfo.x];
+        // Calculate tex_y based on the current y value
+        int tex_y = ((y - ray->draw_start) * data->textures[data->texinfo.side]->height) / ray->line_height;
+        int tex_x = data->texinfo.x % data->textures[data->texinfo.side]->width;
+
+        color = get_color2(tex_x, tex_y, data->textures[data->texinfo.side]);
         mlx_put_pixel(data->img, x, y, color);
         y++;
     }
-
 }
-//     ft_get_side(data, ray); // Use your function to get the texture index
-//     tex->x = (int)(ray->wall_x * (double)(tex->size));
-//     if ((ray->side == 0 && ray->dir_x > 0)
-//         || (ray->side == 1 && ray->dir_y < 0))
-//         tex->x = tex->size - tex->x - 1;
-//     tex->step = 1.0 * tex->size / ray->line_height;
-//     tex->pos = (ray->draw_start - WIN_HEIGHT / 2
-//             + ray->line_height / 2) * tex->step;
-//     y = ray->draw_start;
-//     while (y < ray->draw_end)
-//     {
-//         tex->y = (int)tex->pos & (tex->size - 1);
-//         tex->pos += tex->step;
-//         color = data->textures[data->texinfo.side][tex->size * tex->y + tex->x];
-//         if (data->texinfo.side == NORTH || data->texinfo.side == EAST)
-//             color = (color >> 1) & 8355711;
-//         if (color > 0)
-//             data->texture_pixels[y * WIN_WIDTH + x] = color;
-//         y++;
-//     }
-// }
 
 void raycast(t_data *data)
 {

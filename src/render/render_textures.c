@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 12:14:41 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/17 13:31:27 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/18 10:53:51 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,34 @@ void calc_height(t_ray *ray, t_data *data)
     // ray->wall_dist, ray->line_height, ray->draw_start, ray->draw_end, ray->wall_x);
 }
 
+// void ft_get_side(t_data *data, t_ray *ray)
+// {
+//     if(ray->side == 1)
+//     {
+//         if(ray->dir_x > 0)
+//             data->texinfo.side = EAST;
+//         else
+//             data->texinfo.side = WEST;
+//     }
+//     else
+//     {
+//         if(ray->dir_y > 0)
+//             data->texinfo.side = NORTH;
+//         else
+//             data->texinfo.side = SOUTH;
+//     }
+// }
+
 void ft_get_side(t_data *data, t_ray *ray)
 {
-    if(ray->side == 1)
+    if(ray->side == 0) // The ray hit the east or west side of a wall
     {
         if(ray->dir_x > 0)
             data->texinfo.side = EAST;
         else
             data->texinfo.side = WEST;
     }
-    else
+    else // The ray hit the north or south side of a wall
     {
         if(ray->dir_y > 0)
             data->texinfo.side = NORTH;
