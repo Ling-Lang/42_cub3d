@@ -1,10 +1,18 @@
 
 ## TODO
 
+Ziele fuer Montag
+* [ ] Leaks
+* [ ] Bonus nur wenn leaks fertig.
+## Bonus TODO
+* [ ] Tuer
+* [ ] Animation
+* [ ] Maus kamera
+
 ### Hauptziele
 * [x] Map parsing
 * [x] Basic rendering nur Farben
-* [?] Movement
+* [X] Movement
 * [x] Textures
 * [x] Performance
 
@@ -13,8 +21,8 @@
 
 * [ ] Map parsing Segfault fixen bei tabs/leerzeichen nachpfad
 * [ ] Leaks fixen
-* [ ] Funktionen runterbrechen
-* [ ] Bonus vielleicht.
+* [X] Funktionen runterbrechen
+* [x] Bonus vielleicht.
 
 ---
 
