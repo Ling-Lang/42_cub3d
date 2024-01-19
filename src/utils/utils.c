@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:22:33 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/19 14:58:34 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 15:08:33 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ static void	ft_error_2(int type, t_data *data)
 	if (type == OPEN)
 	{
 		ft_strerror("Invalid file or filepath\n", data);
+		exit(EXIT_FAILURE);
+	}
+	if (type == M_FILE)
+	{
+		ft_strerror("Invalid map file make sure it ends in .cub\n", data);
 		exit(EXIT_FAILURE);
 	}
 }
