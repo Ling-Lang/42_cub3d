@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/18 13:58:09 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:35:44 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ typedef struct s_mapinfo
 	int			line_count;
 	char		*path;
 	char		**file;
-	int			height;
-	int			width;
+	int			len;
 	int			index_end_of_map;
 	char		**map;
+	bool		first;
 }				t_mapinfo;
 
 typedef struct s_ray
@@ -106,7 +106,10 @@ typedef struct s_data
 typedef enum e_etype
 {
 	MLX = 0,
-	MALLOC
+	MALLOC,
+	MAP,
+	ARG,
+	OPEN
 }				t_etype;
 
 typedef enum e_dir

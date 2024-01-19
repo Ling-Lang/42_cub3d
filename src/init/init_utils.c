@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 10:38:51 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/18 13:54:33 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:58:13 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,21 +60,38 @@ char	*get_value(char *line, char *name)
 	j = ft_strlen(line) - len - 1;
 	res = ft_calloc(len + 1, sizeof(char));
 	if (!res)
-		ft_error(MALLOC);
+		exit(EXIT_FAILURE);
 	res = ft_strncpy(&line[j], res, len);
 	return (res);
 }
 
-// TODO Fehler mit nachfolgenden tabs oder spaces fixen (trim?)
+static char	*ft_strtrim_1(char *str)
+{
+	char	*end;
+
+	while (*str == ' ' || *str == '\t')
+		str++;
+	end = str + strlen(str) - 1;
+	while (end > str && (*end == ' ' || *end == '\t'))
+	{
+		*end = '\0';
+		end--;
+	}
+	return (str);
+}
+
 int	ft_get_color(char *raw_value)
 {
 	char	**tmp_split;
 	int		res;
 	int		i;
 
+	while (*raw_value == ' ' || *raw_value == '\t')
+		raw_value++;
 	tmp_split = ft_split(raw_value, ',');
-	res = get_rgba(ft_atoi(tmp_split[0]), ft_atoi(tmp_split[1]),
-			ft_atoi(tmp_split[2]), 255);
+	res = get_rgba(ft_atoi(ft_strtrim_1(tmp_split[0])),
+			ft_atoi(ft_strtrim_1(tmp_split[1])),
+			ft_atoi(ft_strtrim_1(tmp_split[2])), 255);
 	i = 0;
 	while (tmp_split[i])
 	{

@@ -6,108 +6,59 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 14:35:14 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/18 13:54:51 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:29:17 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	ft_isplayer(char c)
+bool	ft_check(t_data *data, int col, int *rows, bool *player)
 {
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	else
-		return (0);
-}
-
-static bool	ft_check_around(t_data *data, int col, int rows)
-{
-	if (ft_isalnum(data->mapinfo.file[col + 1][rows]) == 1)
+	if (data->mapinfo.file[col][*rows] == '1')
+		*rows += 1;
+	else if (data->mapinfo.file[col][*rows] == '0'
+		|| ft_isplayer(data->mapinfo.file[col][*rows]) == 1)
 	{
-		if (ft_isalnum(data->mapinfo.file[col - 1][rows]) == 1)
+		if (ft_check_around(data, col, *rows) == true)
 		{
-			if (ft_isalnum(data->mapinfo.file[col][rows + 1]) == 1)
-			{
-				if (ft_isalnum(data->mapinfo.file[col][rows - 1]) == 1)
-					return (true);
-				else
-					return (false);
-			}
-			else
+			if (check_player(data, col, *rows, player) == false)
 				return (false);
+			*rows += 1;
 		}
 		else
 			return (false);
 	}
+	else if (data->mapinfo.file[col][*rows] == ' '
+		|| data->mapinfo.file[col][*rows] == '\n')
+		*rows += 1;
 	else
 		return (false);
-}
-
-int	ft_count_map_lines(t_data *data, int i)
-{
-	int	len;
-
-	len = 0;
-	while (data->mapinfo.file[i])
-	{
-		len++;
-		i++;
-	}
-	return (len);
+	return (true);
 }
 
 static int	ft_validate_map(t_data *data, int i)
 {
 	int		rows;
-	int		col;
 	bool	player;
 	bool	is_valid;
-	int		len;
 
 	rows = 0;
-	col = i;
-	len = 0;
+	data->mapinfo.len = 0;
 	is_valid = true;
 	player = false;
 	data->mapinfo.map = ft_calloc(ft_count_map_lines(data, i) + 1,
 			sizeof(char *));
-	while (data->mapinfo.file[col] != NULL && is_valid == true)
+	while (data->mapinfo.file[i] != NULL && is_valid == true)
 	{
-		while (data->mapinfo.file[col][rows] != '\0')
+		while (data->mapinfo.file[i][rows] != '\0')
 		{
-			if (data->mapinfo.file[col][rows] == '1')
-				rows++;
-			else if (data->mapinfo.file[col][rows] == '0'
-				|| ft_isplayer(data->mapinfo.file[col][rows]) == 1)
-			{
-				if (ft_check_around(data, col, rows) == true)
-				{
-					if (ft_isplayer(data->mapinfo.file[col][rows]) == true)
-					{
-						if (player == true)
-							return (false);
-						else
-						{
-							player = true;
-							data->player.pos_y = len * 64;
-							data->player.pos_x = rows * 64;
-							data->player.dir = data->mapinfo.file[col][rows];
-						}
-					}
-					rows++;
-				}
-				else
-					return (false);
-			}
-			else if (data->mapinfo.file[col][rows] == ' '
-				|| data->mapinfo.file[col][rows] == '\n')
-				rows++;
-			else
-				return (false);
+			if (ft_check(data, i, &rows, &player) == false)
+				ft_error(MAP, data);
 		}
-		data->mapinfo.map[len++] = (char *)ft_calloc(rows, sizeof(char));
+		data->mapinfo.map[data->mapinfo.len++] = (char *)ft_calloc(rows,
+				sizeof(char));
 		rows = 0;
-		col++;
+		i++;
 	}
 	if (player == false)
 		return (false);
@@ -145,9 +96,18 @@ void	ft_fill_map(t_data *data, int i)
 
 void	ft_parse_map(t_data *data, int i)
 {
+	int	j;
+
 	while (is_line_empty(data->mapinfo.file[i]) == 0)
 		i++;
 	i++;
+	j = 0;
+	while (data->mapinfo.file[i][j] != '\0')
+	{
+		if (data->mapinfo.file[i][j] == '0')
+			ft_error(MAP, data);
+		j++;
+	}
 	if (ft_validate_map(data, i) == true)
 		ft_fill_map(data, i);
 }

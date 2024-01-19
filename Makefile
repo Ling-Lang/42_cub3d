@@ -1,6 +1,6 @@
 NAME	:= cub3d
 CC		:= gcc
-CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast -g
+CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -g
 DEBUG	:= -g
 LIBMLX	:= ./lib/MLX42
 LIBFT	:= ./lib/Libft
@@ -15,9 +15,12 @@ SRC	:= 	src/main.c \
 		src/init/init_utils.c \
 		src/init/init_load.c \
 		src/init/init_map.c \
+		src/init/init_map_tools.c \
 		src/init/init_player.c \
 		src/utils/draw_utils.c \
 		src/utils/utils.c \
+		src/utils/movement.c \
+		src/utils/hooks.c \
 		src/render/render_main.c \
 		src/render/render_dda.c \
 		src/render/render_raycasting.c \

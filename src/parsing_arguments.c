@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:21:04 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/18 13:25:32 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:04:43 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ static void	build_size_of_map(t_data *data, int row, int col, int i)
 	data->mapinfo.file[row] = NULL;
 }
 
-void	parse_arguments(char *path, t_data *data)
+void	parse_arguments(char *path, t_data *data, int argc)
 {
 	int	i;
 	int	row;
 	int	col;
 
+	if (argc != 2)
+		ft_error(ARG, data);
 	i = 0;
 	col = 0;
 	row = 0;

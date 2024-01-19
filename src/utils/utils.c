@@ -6,29 +6,50 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 14:22:33 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/18 13:48:47 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:58:34 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	ft_error(int type)
+static void	ft_error_2(int type, t_data *data)
 {
-	if (type == MLX)
+	if (type == OPEN)
 	{
-		perror(mlx_strerror(mlx_errno));
-		exit(EXIT_FAILURE);
-	}
-	if (type == MALLOC)
-	{
-		perror("Malloc");
+		ft_strerror("Invalid file or filepath\n", data);
 		exit(EXIT_FAILURE);
 	}
 }
 
-void	ft_strerror(char *str)
+void	ft_error(int type, t_data *data)
 {
-	write(2, "Error: ", 7);
-	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
+	if (type == MLX)
+	{
+		perror(mlx_strerror(mlx_errno));
+		ft_close(data);
+	}
+	else if (type == MALLOC)
+	{
+		perror("Malloc");
+		ft_close(data);
+	}
+	else if (type == MAP)
+	{
+		ft_strerror("Map is not valid look into the subject"
+			"for more information!\n", data);
+		ft_close(data);
+	}
+	else if (type == ARG)
+	{
+		ft_strerror("Invalid number of arguements!\n", data);
+		exit(EXIT_FAILURE);
+	}
+	else
+		ft_error_2(type, data);
+}
+
+void	ft_strerror(char *str, t_data *data)
+{
+	write(2, "Error:\n", 7);
+	ft_putstr_fd(str, 2);
 }

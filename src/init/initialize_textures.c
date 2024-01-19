@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:45:53 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/18 11:30:00 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/19 14:41:10 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 char	*ft_check_dir_2(int i, t_data *data, char *str, int *count)
 {
+	char	*tmp;
+
 	*count += 1;
+	tmp = get_value(data->mapinfo.file[i], str);
+	ft_printf("\t%c\n", str[0]);
+	if (open(tmp, O_RDONLY) == -1 && (str[0] != 'F' && str[0] != 'C'))
+		ft_error(OPEN, data);
 	return (get_value(data->mapinfo.file[i], str));
 }
 
