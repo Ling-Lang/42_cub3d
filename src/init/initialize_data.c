@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 09:34:24 by rmarquar          #+#    #+#             */
-/*   Updated: 2024/01/19 14:17:05 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:30:26 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ static void	player_initialize(t_player *player)
 	player->has_moved = 0;
 	player->rotate = 0.06;
 	player->speed = 5;
+	player->m_x = 0;
+	player->m_y = 0;
+	player->spawn = true;
 }
 
 void	data_initialize(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 13:10:39 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/19 13:27:25 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:31:09 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_move_forward(t_data *data)
 		data->player.pos_y += data->player.dir_y * data->player.speed;
 		data->player.pos_x += data->player.dir_x * data->player.speed;
 		data->player.has_moved = true;
+		data->player.spawn = false;
 	}
 }
 
@@ -80,6 +81,8 @@ void	ft_rotate(t_data *data, double rotspeed)
 {
 	double	tmp_x;
 
+	if (data->player.dir == 'E' || data->player.dir == 'W')
+		rotspeed *= -1;
 	tmp_x = data->player.dir_x;
 	data->player.dir_x = data->player.dir_x * cos(rotspeed) - data->player.dir_y
 		* sin(rotspeed);

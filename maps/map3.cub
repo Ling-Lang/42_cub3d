@@ -1,25 +1,26 @@
 
-F 133,183,157 
-NO textures/WALL2.png
+F 133,183,157
+NO textures/north.png
 
 C 135,206,235
 
-SO textures/WALL2.png
-WE textures/WALL2.png
+SO textures/south.png
+WE textures/west.png
 
 
-EA textures/WALL2.png
+EA textures/east.png
 
-    11111           
-   1000001          
-   1010001          
-   1000001          
+    111111           
+   10000001          
+   10000001          
+   1111001          
     11000011        
-     10110001  111  
-      1  1000110001 
+     11110001  111  
+         1000110001 
          1000011001
-         10W0000001 
-          11001111  
-            101     
-             1
+         10S0000001 
+         1000000001
+          10000011  
+           11001     
+             11
 

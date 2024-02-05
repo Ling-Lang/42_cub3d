@@ -6,16 +6,15 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:48:10 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/19 14:17:43 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/02/05 12:36:23 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../lib/Libft/src/libft.h"
+# include "../lib/Libft/include/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
-# include "../lib/get_next_line/get_next_line.h"
 # include "structs.h"
 # include <fcntl.h>
 # include <math.h>
@@ -40,7 +39,7 @@ void	parse_arguments(char *path, t_data *data, int argc);
 /* Utils */
 int		get_rgba(int r, int g, int b, int a);
 void	ft_clear(t_data *data);
-void	ft_strerror(char *str, t_data *data);
+void	ft_strerror(char *str);
 void	ft_error(int type, t_data *data);
 void	ft_close(t_data *data);
 
@@ -53,10 +52,10 @@ int		ft_load_colors(t_data *data);
 int		ft_get_color(char *raw_value);
 void	ft_parse_map(t_data *data, int i);
 void	init_player(t_data *data);
-int	ft_isplayer(char c);
+int		ft_isplayer(char c);
 bool	ft_check_around(t_data *data, int col, int rows);
-int	ft_count_map_lines(t_data *data, int i);
-bool check_player(t_data *data, int col, int rows, bool *player);
+int		ft_count_map_lines(t_data *data, int i);
+bool	check_player(t_data *data, int col, int rows, bool *player);
 
 /* Render Zeugs */
 void	ft_render(t_data *data, bool direct);
@@ -66,14 +65,14 @@ void	do_dda(t_ray *ray, t_data *data);
 void	calc_height(t_ray *ray, t_data *data);
 
 /* Movement */
-void ft_move_forward(t_data *data);
-void ft_move_backwards(t_data *data);
-void ft_move_left(t_data *data);
-void ft_move_right(t_data *data);
+void	ft_move_forward(t_data *data);
+void	ft_move_backwards(t_data *data);
+void	ft_move_left(t_data *data);
+void	ft_move_right(t_data *data);
 void	ft_rotate(t_data *data, double rotspeed);
 
 /* Hooks */
 void	main_hook(void *v_data);
-void move_hook(void *v_data);
-void rotate_hook(void *v_data);
+void	move_hook(void *v_data);
+void	rotate_hook(void *v_data);
 #endif

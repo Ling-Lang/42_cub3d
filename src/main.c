@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 12:45:20 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/19 14:58:29 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:21:06 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static void	print_controls(void)
 
 void	ft_close(t_data *data)
 {
-	mlx_close_window(data->mlx);
 	free(data->colors);
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
 	exit(EXIT_SUCCESS);
 }
 
@@ -31,6 +32,11 @@ int	main(int argc, char **argv)
 {
 	t_data	data;
 
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error:\nInvalid number of arguments.", 2);
+		exit(EXIT_FAILURE);
+	}
 	data_initialize(&data);
 	parse_arguments(argv[1], &data, argc);
 	init_mlx(&data);

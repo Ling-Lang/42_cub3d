@@ -6,7 +6,7 @@
 /*   By: jkulka <jkulka@student.42heilbronn.de >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:06:59 by jkulka            #+#    #+#             */
-/*   Updated: 2024/01/19 15:08:29 by jkulka           ###   ########.fr       */
+/*   Updated: 2024/01/22 13:30:13 by jkulka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ typedef struct s_player
 	int			move_y;
 	double		rotate;
 	double		speed;
+	int32_t		m_x;
+	int32_t		m_y;
+	bool		spawn;
 }				t_player;
 
 typedef struct s_data

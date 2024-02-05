@@ -4,7 +4,7 @@ CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -g
 DEBUG	:= -g
 LIBMLX	:= ./lib/MLX42
 LIBFT	:= ./lib/Libft
-HEADERS	:= -I ./include -I $(LIBMLX)/include -I ./$(LIBFT)/src
+HEADERS	:= -I ./include -I $(LIBMLX)/include -I ./$(LIBFT)/include
 LIB	:= $(LIBMLX)/build/libmlx42.a $(LIBFT)/libft.a -ldl -lglfw -pthread -lm
 
 SRC	:= 	src/main.c \
@@ -25,8 +25,6 @@ SRC	:= 	src/main.c \
 		src/render/render_dda.c \
 		src/render/render_raycasting.c \
 		src/render/render_textures.c \
-		lib/get_next_line/get_next_line_utils.c \
-		lib/get_next_line/get_next_line.c
 
 OBJ	:= $(patsubst %.c,obj/%.o,$(SRC))
 
@@ -52,7 +50,7 @@ libft:
 
 obj/%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) $(DEBUG) -o $@ -c $< $(HEADERS)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJ)
 	@echo "$(GREEN)Compiling $@$(RESET)"
